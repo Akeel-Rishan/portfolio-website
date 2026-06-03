@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0f;
+  --card: #111118;
+  --card-foreground: #f8f8ff;
+  --border: #1e1e2e;
+  --primary: #7c3aed;
+  --secondary: #06b6d4;
+  --muted: #6b7280;
+  --muted-foreground: #9ca3af;
+  --ring: rgba(124, 58, 237, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 18%, rgba(124, 58, 237, 0.14), transparent 30%),
+    radial-gradient(circle at 82% 12%, rgba(6, 182, 212, 0.12), transparent 26%),
+    var(--background);
+  color: var(--card-foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+body,
+button,
+input,
+textarea {
+  font-family: var(--font-inter), Inter, sans-serif;
+}
+
+section {
+  scroll-margin-top: 96px;
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.75);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #06b6d4);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #f8f8ff 0%, #a78bfa 42%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.neon-glow {
+  box-shadow:
+    0 0 24px rgba(124, 58, 237, 0.38),
+    0 0 42px rgba(6, 182, 212, 0.18);
+}
+
+.section-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin-inline: auto;
+  padding-block: 96px;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(6, 182, 212, 0.8);
+  box-shadow: 0 0 24px rgba(6, 182, 212, 0.75);
+  animation: float-particle 8s ease-in-out infinite;
+}
+
+.particle:nth-child(2n) {
+  background: rgba(124, 58, 237, 0.85);
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.72);
+  animation-duration: 10s;
+}
+
+.particle:nth-child(3n) {
+  width: 4px;
+  height: 4px;
+  animation-duration: 12s;
+}
