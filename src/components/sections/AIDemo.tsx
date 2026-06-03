@@ -11,7 +11,7 @@ export function AIDemo() {
   const { ref, inView } = useScrollReveal<HTMLElement>();
 
   return (
-    <section id="ai-demo" ref={ref} className="section-shell">
+    <section id="demo" ref={ref} className="section-shell">
       <motion.div variants={staggerChildren} initial="hidden" animate={inView ? "visible" : "hidden"}>
         <motion.div variants={fadeInUp}>
           <Card className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">

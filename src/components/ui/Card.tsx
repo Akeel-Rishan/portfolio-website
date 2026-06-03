@@ -1,17 +1,27 @@
+"use client";
+
+import { motion, type HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface CardProps extends HTMLMotionProps<"div"> {
+  hover?: boolean;
+  glow?: boolean;
+}
 
-export function Card({ className, children, ...props }: CardProps) {
+export function Card({ className, children, hover = true, glow = false, ...props }: CardProps) {
   return (
-    <div
+    <motion.div
+      whileHover={hover ? { scale: 1.02, y: -4 } : undefined}
+      transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className={cn(
-        "glass rounded-xl border border-dark-border bg-dark-card/75 p-6 transition duration-300 hover:scale-[1.02] hover:border-brand-purple/70",
+        "rounded-xl border border-dark-border bg-dark-card/80 p-6 backdrop-blur-md transition-colors duration-300",
+        hover && "hover:border-brand-purple/80",
+        glow && "hover:shadow-[0_0_34px_rgba(124,58,237,0.34)]",
         className
       )}
       {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

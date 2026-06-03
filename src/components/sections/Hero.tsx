@@ -37,7 +37,7 @@ export function Hero() {
   }, [displayText, isDeleting, titleIndex, titles]);
 
   return (
-    <section id="hero" className="relative flex min-h-screen items-center overflow-hidden pt-20">
+    <section id="home" className="relative flex min-h-screen items-center overflow-hidden pt-20">
       <div className="pointer-events-none absolute inset-0">
         {Array.from({ length: 24 }).map((_, index) => (
           <span

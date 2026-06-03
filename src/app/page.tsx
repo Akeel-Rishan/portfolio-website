@@ -16,8 +16,8 @@ export default function Home() {
       <Projects />
       <Experience />
       <Certifications />
-      <AIDemo />
       <Contact />
+      <AIDemo />
     </>
   );
 }

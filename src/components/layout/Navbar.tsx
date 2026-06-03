@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 12);
@@ -19,7 +19,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["hero", ...navLinks.map((link) => link.href.replace("#", ""))];
+    const sectionIds = ["home", ...navLinks.map((link) => link.href.replace("#", "")), "demo"];
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((section): section is HTMLElement => Boolean(section));
@@ -59,10 +59,10 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-20 w-[min(1120px,calc(100%-32px))] items-center justify-between">
         <Link
-          href="#hero"
+          href="#home"
           onClick={(event) => {
             event.preventDefault();
-            handleNavClick("#hero");
+            handleNavClick("#home");
           }}
           className="font-mono text-lg font-semibold tracking-normal gradient-text"
         >
