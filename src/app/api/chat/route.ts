@@ -12,7 +12,7 @@ type ChatPayload = {
   userMessage?: unknown;
 };
 
-function toGeminiRole(role: ChatMessage["role"]) {
+function toGeminiRole(role: ChatMessage["role"]): "user" | "model" {
   return role === "assistant" ? "model" : "user";
 }
 
