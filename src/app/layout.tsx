@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
+import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { BackToTop } from "@/components/ui/BackToTop";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { firaCode, inter } from "./fonts";
@@ -11,46 +14,60 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     default: SITE.title,
-    template: `%s | ${SITE.title}`
+    template: `%s | ${SITE.name}`
   },
   description: SITE.description,
   keywords: [
     "AI Engineer",
-    "LLM systems",
-    "RAG pipelines",
-    "autonomous agents",
-    "machine learning",
-    "Next.js portfolio",
-    "production AI"
+    "LLM",
+    "RAG",
+    "LangChain",
+    "LangGraph",
+    "Gemini",
+    "OpenAI",
+    "Next.js",
+    "FastAPI",
+    "Vector Database",
+    "AI Agents",
+    "Machine Learning Engineer",
+    "Portfolio"
   ],
-  authors: [{ name: SITE.name }],
+  authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
   openGraph: {
-    title: SITE.title,
-    description: SITE.description,
-    url: SITE.url,
-    siteName: SITE.title,
     type: "website",
     locale: "en_US",
+    url: SITE.url,
+    title: SITE.title,
+    description: SITE.description,
+    siteName: `${SITE.name} Portfolio`,
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "AI Engineer Portfolio"
+        alt: `${SITE.name} - AI Engineer Portfolio`
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.title,
-    description: SITE.description,
-    creator: "@yourname",
-    images: ["/og-image.png"]
+    description: "AI Engineer building production-grade LLM systems.",
+    creator: SITE.githubHandle,
+    images: ["/opengraph-image"]
   },
   robots: {
     index: true,
-    follow: true
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large"
+    }
+  },
+  verification: {
+    google: "add-after-search-console-setup"
   }
 };
 
@@ -63,10 +80,13 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={cn(inter.variable, firaCode.variable, "bg-dark-bg text-text-primary antialiased")}>
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" enableSystem={false}>
+          <ScrollProgress />
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <BackToTop />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
