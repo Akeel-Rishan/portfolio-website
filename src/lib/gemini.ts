@@ -1,5 +1,5 @@
 const GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models";
-const DEFAULT_MODEL = "gemini-1.5-flash";
+const DEFAULT_MODEL = "gemini-3.1-flash-lite";
 const DEFAULT_GENERATION_CONFIG = {
   temperature: 0.7,
   maxOutputTokens: 1024
