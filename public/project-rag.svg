@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="RAG PDF chat system architecture preview">
+  <rect width="960" height="540" fill="#0A0A0F"/>
+  <path d="M0 90h960M0 180h960M0 270h960M0 360h960M0 450h960M160 0v540M320 0v540M480 0v540M640 0v540M800 0v540" stroke="#1E1E2E" stroke-width="1"/>
+  <circle cx="760" cy="380" r="180" fill="#7C3AED" opacity=".18"/>
+  <circle cx="250" cy="160" r="130" fill="#06B6D4" opacity=".14"/>
+  <rect x="94" y="112" width="210" height="264" rx="18" fill="#111118" stroke="#7C3AED" stroke-opacity=".55"/>
+  <path d="M132 170h132M132 218h108M132 266h132M132 314h86" stroke="#F8F8FF" stroke-width="16" stroke-linecap="round" opacity=".8"/>
+  <rect x="376" y="148" width="208" height="84" rx="42" fill="#111118" stroke="#06B6D4" stroke-opacity=".7"/>
+  <text x="480" y="201" fill="#CFFAFE" font-family="Arial" font-size="26" font-weight="700" text-anchor="middle">Retriever</text>
+  <rect x="376" y="292" width="208" height="84" rx="42" fill="#111118" stroke="#7C3AED" stroke-opacity=".75"/>
+  <text x="480" y="345" fill="#DDD6FE" font-family="Arial" font-size="26" font-weight="700" text-anchor="middle">Gemini</text>
+  <rect x="664" y="155" width="190" height="210" rx="22" fill="#111118" stroke="#06B6D4" stroke-opacity=".5"/>
+  <path d="M702 215h114M702 260h88M702 305h128" stroke="#06B6D4" stroke-width="14" stroke-linecap="round"/>
+  <path d="M304 244h68M584 190h80M584 334h80" stroke="#A78BFA" stroke-width="8" stroke-linecap="round"/>
+</svg>

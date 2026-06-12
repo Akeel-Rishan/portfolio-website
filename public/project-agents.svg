@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Multi-agent workflow orchestration preview">
+  <rect width="960" height="540" fill="#0A0A0F"/>
+  <path d="M0 120h960M0 240h960M0 360h960M0 480h960M120 0v540M240 0v540M360 0v540M480 0v540M600 0v540M720 0v540M840 0v540" stroke="#1E1E2E"/>
+  <circle cx="470" cy="270" r="76" fill="#111118" stroke="#7C3AED" stroke-width="4"/>
+  <text x="470" y="278" fill="#F8F8FF" font-family="Arial" font-size="28" font-weight="700" text-anchor="middle">Planner</text>
+  <g fill="#111118" stroke="#06B6D4" stroke-width="3">
+    <circle cx="230" cy="150" r="58"/>
+    <circle cx="720" cy="150" r="58"/>
+    <circle cx="230" cy="390" r="58"/>
+    <circle cx="720" cy="390" r="58"/>
+  </g>
+  <g fill="#CFFAFE" font-family="Arial" font-size="22" font-weight="700" text-anchor="middle">
+    <text x="230" y="157">Research</text>
+    <text x="720" y="157">Code</text>
+    <text x="230" y="397">Review</text>
+    <text x="720" y="397">Report</text>
+  </g>
+  <path d="M285 174l122 62M655 174l-121 62M285 366l122-62M655 366l-121-62" stroke="#A78BFA" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="825" cy="430" r="110" fill="#06B6D4" opacity=".12"/>
+</svg>

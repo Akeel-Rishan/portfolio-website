@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="AI voice assistant waveform preview">
+  <rect width="960" height="540" fill="#0A0A0F"/>
+  <path d="M0 270h960" stroke="#1E1E2E" stroke-width="2"/>
+  <circle cx="480" cy="270" r="170" fill="#111118" stroke="#7C3AED" stroke-width="4"/>
+  <circle cx="480" cy="270" r="108" fill="#7C3AED" opacity=".18"/>
+  <path d="M210 270c42-126 74 126 116 0s74 126 116 0 74-126 116 0 74 126 116 0 74-126 116 0" fill="none" stroke="#06B6D4" stroke-width="16" stroke-linecap="round"/>
+  <rect x="426" y="170" width="108" height="170" rx="54" fill="#0A0A0F" stroke="#F8F8FF" stroke-opacity=".8" stroke-width="8"/>
+  <path d="M390 280c0 58 38 96 90 96s90-38 90-96M480 376v58M440 434h80" fill="none" stroke="#A78BFA" stroke-width="10" stroke-linecap="round"/>
+</svg>

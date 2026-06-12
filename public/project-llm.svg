@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Fine-tuned domain LLM evaluation preview">
+  <rect width="960" height="540" fill="#0A0A0F"/>
+  <circle cx="240" cy="270" r="150" fill="#7C3AED" opacity=".18"/>
+  <circle cx="705" cy="270" r="150" fill="#06B6D4" opacity=".13"/>
+  <rect x="124" y="126" width="250" height="288" rx="24" fill="#111118" stroke="#7C3AED" stroke-opacity=".55"/>
+  <rect x="586" y="126" width="250" height="288" rx="24" fill="#111118" stroke="#06B6D4" stroke-opacity=".6"/>
+  <path d="M188 202h120M188 254h84M188 306h132M188 358h96M650 202h120M650 254h84M650 306h132M650 358h96" stroke="#F8F8FF" stroke-width="14" stroke-linecap="round" opacity=".8"/>
+  <path d="M386 270h188" stroke="#A78BFA" stroke-width="10" stroke-linecap="round"/>
+  <path d="M532 230l44 40-44 40" fill="none" stroke="#A78BFA" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="249" y="100" fill="#DDD6FE" font-family="Arial" font-size="28" font-weight="700" text-anchor="middle">Base</text>
+  <text x="711" y="100" fill="#CFFAFE" font-family="Arial" font-size="28" font-weight="700" text-anchor="middle">Tuned</text>
+</svg>
