@@ -1,4 +1,4 @@
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef, type MouseEventHandler, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "outline" | "ghost";
@@ -39,7 +39,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (href) {
       return (
-        <a href={href} className={classes} target={target} rel={rel} download={download} onClick={onClick}>
+        <a
+          href={href}
+          className={classes}
+          target={target}
+          rel={rel}
+          download={download}
+          onClick={onClick as MouseEventHandler<HTMLAnchorElement> | undefined}
+        >
           {icon}
           {children}
         </a>
