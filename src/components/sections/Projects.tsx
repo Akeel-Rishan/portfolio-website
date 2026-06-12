@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
@@ -33,6 +34,16 @@ function ArchitectureFlow({ nodes, featured = false }: { nodes: string[]; featur
 function ProjectCard({ project }: { project: Project }) {
   return (
     <Card glow className="flex h-full flex-col">
+      <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-lg border border-dark-border bg-dark-bg/70">
+        <Image
+          src={project.image}
+          alt={project.imageAlt}
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          loading="lazy"
+          className="object-cover"
+        />
+      </div>
       <div className="flex items-start justify-between gap-4">
         <div>
           <h3 className="text-xl font-semibold text-text-primary">{project.name}</h3>
@@ -108,6 +119,16 @@ export function Projects() {
             </Badge>
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
               <div>
+                <div className="relative mb-6 aspect-[16/9] overflow-hidden rounded-lg border border-dark-border bg-dark-bg/70">
+                  <Image
+                    src={featured.image}
+                    alt={featured.imageAlt}
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 46vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
                 <h3 className="pr-24 text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-text-primary">
                   {featured.name}
                 </h3>
