@@ -56,8 +56,13 @@ export function AIDemo() {
         body: JSON.stringify({ messages, userMessage })
       });
 
-      if (!response.ok || !response.body) {
-        throw new Error("Chat request failed");
+      if (!response.ok) {
+        const result = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(result?.error ?? "Chat request failed");
+      }
+
+      if (!response.body) {
+        throw new Error("Chat response did not include a stream");
       }
 
       const reader = response.body.getReader();
@@ -74,8 +79,12 @@ export function AIDemo() {
           return updated;
         });
       }
-    } catch {
-      setError("The AI chat could not respond. Check your Gemini API key and try again.");
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "The AI chat could not respond. Check your Gemini API key and try again."
+      );
     } finally {
       setIsStreaming(false);
     }
