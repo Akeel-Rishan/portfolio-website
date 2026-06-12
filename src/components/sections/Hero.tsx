@@ -91,6 +91,8 @@ export function Hero() {
                 <a
                   key={item.label}
                   href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={item.label}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-dark-border bg-dark-card/70 text-text-muted transition duration-300 hover:scale-[1.02] hover:border-brand-cyan hover:text-brand-cyan"
                 >

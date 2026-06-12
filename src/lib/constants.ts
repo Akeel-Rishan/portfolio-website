@@ -2,18 +2,20 @@ import { Bot, Brain, Code2, Database, GitBranch, ServerCog } from "lucide-react"
 import type { Certification, Experience, NavLink, Project, SkillCategory } from "@/types";
 
 export const SITE = {
-  name: "YourName",
-  initials: "YN",
+  name: "Akeel Rishan",
+  initials: "AR",
   title: "AI Engineer Portfolio",
   description:
     "AI Engineer building production-grade LLM systems, RAG pipelines, and autonomous AI agents.",
   tagline: "Production-grade LLM systems, RAG pipelines, and autonomous AI agents.",
   url: "https://your-domain.com",
   email: "hello@your-domain.com",
-  github: "https://github.com/yourname",
-  githubHandle: "@yourname",
-  linkedin: "https://linkedin.com/in/yourname",
-  linkedinLabel: "linkedin.com/in/yourname",
+  github: "https://github.com/Akeel-Rishan",
+  githubHandle: "@Akeel-Rishan",
+  linkedin: "https://www.linkedin.com/in/akeelrishan",
+  linkedinLabel: "linkedin.com/in/akeelrishan",
+  kaggle: "https://www.kaggle.com/akeelrishanai",
+  kaggleLabel: "kaggle.com/akeelrishanai",
   twitter: "https://twitter.com/yourname",
   cv: "/cv.pdf"
 };

@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Github, Globe, Linkedin, Mail, Send } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -14,6 +14,7 @@ type FormStatus = "idle" | "sending" | "sent" | "error";
 const contactMethods = [
   { label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, icon: Mail },
   { label: "LinkedIn", value: SITE.linkedinLabel, href: SITE.linkedin, icon: Linkedin },
+  { label: "Kaggle", value: SITE.kaggleLabel, href: SITE.kaggle, icon: Globe },
   { label: "GitHub", value: SITE.githubHandle, href: SITE.github, icon: Github }
 ];
 
