@@ -10,6 +10,8 @@ export interface ProjectMetric {
 export interface Project {
   name: string;
   description: string;
+  image: string;
+  imageAlt: string;
   problem: string;
   solution: string;
   impact: string;

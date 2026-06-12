@@ -4,13 +4,14 @@ import type { Certification, Experience, NavLink, Project, SkillCategory } from 
 export const SITE = {
   name: "Akeel Rishan",
   initials: "AR",
-  title: "AI Engineer Portfolio",
+  title: "Akeel Rishan | AI Engineer",
   description:
-    "AI Engineer building production-grade LLM systems, RAG pipelines, and autonomous AI agents.",
+    "AI Engineer building production-grade LLM systems, RAG pipelines, and autonomous AI agents. View live demos, architecture diagrams, and open source projects.",
   tagline: "Production-grade LLM systems, RAG pipelines, and autonomous AI agents.",
-  url: "https://your-domain.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://your-domain.com",
   email: "hello@your-domain.com",
   github: "https://github.com/Akeel-Rishan",
+  githubUsername: "Akeel-Rishan",
   githubHandle: "@Akeel-Rishan",
   linkedin: "https://www.linkedin.com/in/akeelrishan",
   linkedinLabel: "linkedin.com/in/akeelrishan",
@@ -32,6 +33,8 @@ export const projects: Project[] = [
   {
     name: "RAG PDF Chat System",
     description: "Document intelligence platform for grounded Q&A across large PDF collections.",
+    image: "/project-rag.svg",
+    imageAlt: "RAG PDF chat system architecture preview",
     problem: "Teams were losing time searching fragmented PDFs and still lacked confidence in answers.",
     solution: "Built a cited RAG workflow with ingestion, semantic retrieval, reranking, and Gemini synthesis.",
     impact: "Reduced document lookup time while keeping responses traceable to source passages.",
@@ -49,6 +52,8 @@ export const projects: Project[] = [
   {
     name: "Multi-Agent Workflow System",
     description: "Coordinated agents that plan, execute, validate, and report complex work.",
+    image: "/project-agents.svg",
+    imageAlt: "Multi-agent workflow orchestration preview",
     problem: "Manual operational workflows required repeated context switching and quality checks.",
     solution: "Composed LangGraph and CrewAI agents with Redis state and FastAPI orchestration.",
     impact: "Completed multi-step tasks faster with auditable intermediate decisions.",
@@ -65,6 +70,8 @@ export const projects: Project[] = [
   {
     name: "AI SaaS Platform",
     description: "Subscription-ready AI app with auth, billing, usage limits, and model routing.",
+    image: "/project-saas.svg",
+    imageAlt: "AI SaaS platform dashboard preview",
     problem: "AI prototypes often lacked production product foundations like billing and reliability.",
     solution: "Built a Next.js platform with Stripe, Supabase, OpenAI routes, and usage metering.",
     impact: "Created a deployable SaaS base for AI product experiments and customer pilots.",
@@ -81,6 +88,8 @@ export const projects: Project[] = [
   {
     name: "Fine-tuned Domain LLM",
     description: "Domain-specialized model using LoRA adapters and experiment tracking.",
+    image: "/project-llm.svg",
+    imageAlt: "Fine-tuned domain LLM evaluation preview",
     problem: "Generic model responses missed domain terminology and classification nuance.",
     solution: "Fine-tuned with PEFT, tracked experiments in W&B, and evaluated against a curated test set.",
     impact: "Improved task-specific quality while keeping training cost and deployment size practical.",
@@ -97,6 +106,8 @@ export const projects: Project[] = [
   {
     name: "AI Voice Assistant",
     description: "Low-latency voice assistant with transcription, synthesis, and conversational state.",
+    image: "/project-voice.svg",
+    imageAlt: "AI voice assistant waveform preview",
     problem: "Voice AI needed faster turn-taking and more natural escalation behavior.",
     solution: "Combined Whisper, Gemini, ElevenLabs, FastAPI, and WebSockets for real-time sessions.",
     impact: "Delivered natural voice responses with accurate transcripts and configurable personas.",
