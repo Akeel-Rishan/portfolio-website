@@ -2,14 +2,16 @@
 
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Globe, Linkedin, Mail, Send } from "lucide-react";
+import { CheckCircle2, Github, Globe, Linkedin, Mail, Send } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { fadeInLeft, fadeInRight, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { SITE } from "@/lib/constants";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
+type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
 const contactMethods = [
   { label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, icon: Mail },
@@ -22,14 +24,48 @@ const subjectOptions = ["Job Opportunity", "Collaboration", "General Question", 
 
 export function Contact() {
   const { ref, inView } = useScrollReveal<HTMLElement>();
+  const { trackContactSubmit } = useAnalytics();
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const validateForm = (formData: FormData) => {
+    const nextErrors: FieldErrors = {};
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    if (name.length < 2) {
+      nextErrors.name = "Please enter at least 2 characters.";
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      nextErrors.email = "Please enter a valid email address.";
+    }
+
+    if (message.length < 20) {
+      nextErrors.message = "Please include at least 20 characters.";
+    }
+
+    return nextErrors;
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setStatus("sending");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
+    const nextErrors = validateForm(formData);
+
+    setErrors(nextErrors);
+    setErrorMessage("");
+
+    if (Object.keys(nextErrors).length > 0) {
+      setStatus("idle");
+      return;
+    }
+
+    setStatus("sending");
 
     try {
       const response = await fetch("/api/contact", {
@@ -37,15 +73,18 @@ export function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Object.fromEntries(formData.entries()))
       });
+      const result = (await response.json()) as { success?: boolean; error?: string };
 
       if (!response.ok) {
-        throw new Error("Contact request failed");
+        throw new Error(result.error ?? "Contact request failed");
       }
 
       setStatus("sent");
+      trackContactSubmit();
       form.reset();
-    } catch {
+    } catch (error) {
       setStatus("error");
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
     }
   };
 
@@ -89,14 +128,24 @@ export function Contact() {
         <motion.div variants={fadeInRight}>
           <Card glow>
             <form onSubmit={handleSubmit} className="space-y-5">
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="space-y-2 text-sm text-text-muted">
                   <span>Name</span>
                   <input
                     required
                     name="name"
+                    aria-invalid={Boolean(errors.name)}
                     className="w-full rounded-xl border border-dark-border bg-dark-bg/70 px-4 py-3 text-text-primary outline-none transition focus:border-brand-purple"
                   />
+                  {errors.name && <span className="block text-xs text-red-300">{errors.name}</span>}
                 </label>
                 <label className="space-y-2 text-sm text-text-muted">
                   <span>Email</span>
@@ -104,8 +153,10 @@ export function Contact() {
                     required
                     type="email"
                     name="email"
+                    aria-invalid={Boolean(errors.email)}
                     className="w-full rounded-xl border border-dark-border bg-dark-bg/70 px-4 py-3 text-text-primary outline-none transition focus:border-brand-purple"
                   />
+                  {errors.email && <span className="block text-xs text-red-300">{errors.email}</span>}
                 </label>
               </div>
               <label className="space-y-2 text-sm text-text-muted">
@@ -128,8 +179,10 @@ export function Contact() {
                   required
                   name="message"
                   rows={6}
+                  aria-invalid={Boolean(errors.message)}
                   className="w-full resize-none rounded-xl border border-dark-border bg-dark-bg/70 px-4 py-3 text-text-primary outline-none transition focus:border-brand-purple"
                 />
+                {errors.message && <span className="block text-xs text-red-300">{errors.message}</span>}
               </label>
               <Button
                 type="submit"
@@ -140,8 +193,17 @@ export function Contact() {
               >
                 {status === "sending" ? "Sending..." : "Submit Message"}
               </Button>
-              {status === "sent" && <p className="text-sm text-emerald-300">Message received. I&apos;ll reply soon.</p>}
-              {status === "error" && <p className="text-sm text-red-300">Something went wrong. Please try again.</p>}
+              {status === "sent" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-3 rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-4 text-sm text-emerald-200"
+                >
+                  <CheckCircle2 size={20} />
+                  <span>Thank you. Your message is in my inbox and I&apos;ll reply soon.</span>
+                </motion.div>
+              )}
+              {status === "error" && <p className="text-sm text-red-300">{errorMessage}</p>}
             </form>
           </Card>
         </motion.div>
