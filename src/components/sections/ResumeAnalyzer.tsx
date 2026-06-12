@@ -6,6 +6,7 @@ import { AlertTriangle, CheckCircle, FileUp, RotateCcw } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +26,7 @@ const statusMessages = [
 
 export function ResumeAnalyzer() {
   const { ref, inView } = useScrollReveal<HTMLElement>();
+  const { trackResumeUpload } = useAnalytics();
   const [file, setFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [statusIndex, setStatusIndex] = useState(0);
@@ -48,6 +50,7 @@ export function ResumeAnalyzer() {
     setError("");
     setResult(null);
     setFile(nextFile);
+    trackResumeUpload();
   };
 
   const handleDrop = (event: DragEvent<HTMLLabelElement>) => {

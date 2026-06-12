@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { LoadingDots } from "@/components/ui/LoadingDots";
 import { StreamingText } from "@/components/ui/StreamingText";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +37,7 @@ function detectLanguage(code: string) {
 
 export function LiveDemos() {
   const { ref, inView } = useScrollReveal<HTMLElement>();
+  const { trackDemoUse } = useAnalytics();
   const [activeTab, setActiveTab] = useState<DemoTab>("summarize");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -54,6 +56,7 @@ export function LiveDemos() {
     setError("");
     setCopied(false);
     setIsStreaming(true);
+    trackDemoUse(activeTab === "summarize" ? "summarize" : activeTab === "explain-code" ? "explain" : "optimize");
 
     try {
       const bodyKey = activeTab === "explain-code" ? "code" : activeTab === "optimize-prompt" ? "prompt" : "text";

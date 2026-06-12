@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { LoadingDots } from "@/components/ui/LoadingDots";
 import { StreamingText } from "@/components/ui/StreamingText";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
 import { cn } from "@/lib/utils";
 
@@ -26,6 +27,7 @@ const suggestedQuestions = [
 
 export function AIDemo() {
   const { ref, inView } = useScrollReveal<HTMLElement>();
+  const { trackChatMessage } = useAnalytics();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -45,6 +47,7 @@ export function AIDemo() {
     setInput("");
     setError("");
     setIsStreaming(true);
+    trackChatMessage(userMessage);
 
     try {
       const response = await fetch("/api/chat", {

@@ -4,7 +4,9 @@ import { Certifications } from "@/components/sections/Certifications";
 import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
+import { LiveDemos } from "@/components/sections/LiveDemos";
 import { Projects } from "@/components/sections/Projects";
+import { ResumeAnalyzer } from "@/components/sections/ResumeAnalyzer";
 import { Skills } from "@/components/sections/Skills";
 
 export default function Home() {
@@ -14,6 +16,8 @@ export default function Home() {
       <About />
       <Skills />
       <Projects />
+      <LiveDemos />
+      <ResumeAnalyzer />
       <Experience />
       <Certifications />
       <Contact />
