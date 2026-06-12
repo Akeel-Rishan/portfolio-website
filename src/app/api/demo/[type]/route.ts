@@ -44,7 +44,8 @@ export async function POST(request: Request, { params }: { params: { type: strin
 
   try {
     const body = (await request.json()) as DemoPayload;
-    const input = typeof body[config.field] === "string" ? body[config.field].trim() : "";
+    const rawInput = body[config.field];
+    const input = typeof rawInput === "string" ? rawInput.trim() : "";
 
     if (!input) {
       return NextResponse.json({ error: "Input is required" }, { status: 400 });
