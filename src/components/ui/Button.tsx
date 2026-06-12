@@ -11,6 +11,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
   target?: string;
   rel?: string;
+  download?: string | boolean;
 }
 
 const variants: Record<ButtonVariant, string> = {
@@ -28,7 +29,7 @@ const sizes: Record<ButtonSize, string> = {
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, href, variant = "primary", size = "md", icon, children, target, rel, ...props }, ref) => {
+  ({ className, href, variant = "primary", size = "md", icon, children, target, rel, download, onClick, ...props }, ref) => {
     const classes = cn(
       "inline-flex items-center justify-center gap-2 rounded-full border font-semibold transition duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-brand-purple/50 focus:ring-offset-2 focus:ring-offset-dark-bg",
       variants[variant],
@@ -38,7 +39,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     if (href) {
       return (
-        <a href={href} className={classes} target={target} rel={rel}>
+        <a href={href} className={classes} target={target} rel={rel} download={download} onClick={onClick}>
           {icon}
           {children}
         </a>

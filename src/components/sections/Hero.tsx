@@ -4,13 +4,22 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import { SITE } from "@/lib/constants";
+
+type GitHubStats = {
+  public_repos: number;
+  followers: number;
+  public_gists: number;
+};
 
 export function Hero() {
   const titles = useMemo(() => ["AI Engineer", "LLM Systems Builder", "Agent Developer"], []);
+  const { trackCVDownload } = useAnalytics();
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [githubStats, setGithubStats] = useState<GitHubStats | null>(null);
 
   useEffect(() => {
     const current = titles[titleIndex];
@@ -36,6 +45,36 @@ export function Hero() {
     return () => window.clearTimeout(timer);
   }, [displayText, isDeleting, titleIndex, titles]);
 
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadGitHubStats() {
+      try {
+        const response = await fetch(`https://api.github.com/users/${SITE.githubUsername}`, {
+          signal: controller.signal
+        });
+
+        if (!response.ok) {
+          return;
+        }
+
+        const data = (await response.json()) as GitHubStats;
+        setGithubStats({
+          public_repos: data.public_repos,
+          followers: data.followers,
+          public_gists: data.public_gists
+        });
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.warn("Unable to load GitHub stats", error);
+        }
+      }
+    }
+
+    loadGitHubStats();
+    return () => controller.abort();
+  }, []);
+
   return (
     <section id="home" className="relative flex min-h-screen items-center overflow-hidden pt-20">
       <div className="pointer-events-none absolute inset-0">
@@ -59,6 +98,13 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10"
         >
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-200">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-300" />
+            </span>
+            Available for work
+          </div>
           <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-brand-cyan">
             Production AI Systems
           </p>
@@ -75,7 +121,7 @@ export function Hero() {
               View Projects
               <ArrowDown size={18} />
             </Button>
-            <Button href={SITE.cv} variant="outline">
+            <Button href={SITE.cv} variant="outline" download onClick={trackCVDownload}>
               Download CV
               <Download size={18} />
             </Button>
@@ -101,6 +147,22 @@ export function Hero() {
               );
             })}
           </div>
+          {githubStats && (
+            <div className="mt-6 flex flex-wrap gap-3">
+              {[
+                ["Repos", githubStats.public_repos],
+                ["Followers", githubStats.followers],
+                ["Gists", githubStats.public_gists]
+              ].map(([label, value]) => (
+                <div
+                  key={label}
+                  className="rounded-full border border-dark-border bg-dark-card/70 px-4 py-2 text-sm text-text-muted"
+                >
+                  <span className="font-semibold text-text-primary">{value}</span> {label}
+                </div>
+              ))}
+            </div>
+          )}
         </motion.div>
 
         <motion.div
