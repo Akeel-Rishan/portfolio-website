@@ -17,7 +17,7 @@ export const SITE = {
   linkedinLabel: "linkedin.com/in/akeelrishan",
   kaggle: "https://www.kaggle.com/akeelrishanai",
   kaggleLabel: "kaggle.com/akeelrishanai",
-  twitter: "https://twitter.com/yourname",
+  twitter: "https://x.com/Scolarx_",
   cv: "/cv.pdf"
 };
 
