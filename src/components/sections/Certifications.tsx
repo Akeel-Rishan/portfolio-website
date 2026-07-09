@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, ExternalLink } from "lucide-react";
+import { Award } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
 import { certifications } from "@/lib/constants";
@@ -38,17 +37,6 @@ export function Certifications() {
                   <p>{certification.issueDate}</p>
                   <p className="font-mono">{certification.credentialId}</p>
                 </div>
-                <Button
-                  href={certification.url}
-                  variant="outline"
-                  size="sm"
-                  icon={<ExternalLink size={15} />}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-6"
-                >
-                  Verify
-                </Button>
               </Card>
             </motion.div>
           ))}

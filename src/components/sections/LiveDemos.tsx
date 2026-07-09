@@ -66,8 +66,13 @@ export function LiveDemos() {
         body: JSON.stringify({ [bodyKey]: input })
       });
 
-      if (!response.ok || !response.body) {
-        throw new Error("Demo request failed");
+      if (!response.ok) {
+        const result = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(result?.error ?? "Demo request failed");
+      }
+
+      if (!response.body) {
+        throw new Error("Demo response did not include a stream");
       }
 
       const reader = response.body.getReader();
@@ -78,8 +83,8 @@ export function LiveDemos() {
         if (done) break;
         setOutput((current) => current + decoder.decode(value, { stream: true }));
       }
-    } catch {
-      setError("This demo could not generate a response. Check the API key and try again.");
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "This demo could not generate a response. Please try again.");
     } finally {
       setIsStreaming(false);
     }

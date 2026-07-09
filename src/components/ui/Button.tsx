@@ -54,7 +54,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <button ref={ref} className={classes} {...props}>
+      <button ref={ref} className={classes} onClick={onClick} {...props}>
         {icon}
         {children}
       </button>

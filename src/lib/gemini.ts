@@ -16,6 +16,7 @@ export interface StreamGeminiOptions {
   contents?: GeminiContent[];
   temperature?: number;
   maxOutputTokens?: number;
+  responseMimeType?: "application/json" | "text/plain";
 }
 
 export interface CallGeminiOptions extends StreamGeminiOptions {}
@@ -48,7 +49,8 @@ function buildPayload(options: StreamGeminiOptions) {
     generationConfig: {
       ...DEFAULT_GENERATION_CONFIG,
       temperature: options.temperature ?? DEFAULT_GENERATION_CONFIG.temperature,
-      maxOutputTokens: options.maxOutputTokens ?? DEFAULT_GENERATION_CONFIG.maxOutputTokens
+      maxOutputTokens: options.maxOutputTokens ?? DEFAULT_GENERATION_CONFIG.maxOutputTokens,
+      ...(options.responseMimeType ? { responseMimeType: options.responseMimeType } : {})
     }
   };
 }

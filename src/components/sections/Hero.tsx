@@ -91,12 +91,12 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="mx-auto grid w-[min(1120px,calc(100%-32px))] items-center gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="mx-auto grid w-[min(1120px,calc(100%-32px))] items-center gap-12 py-20 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10"
+          className="relative z-10 min-w-0"
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-200">
             <span className="relative flex h-2.5 w-2.5">
@@ -108,10 +108,12 @@ export function Hero() {
           <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-brand-cyan">
             Production AI Systems
           </p>
-          <h1 className="min-h-[152px] text-5xl font-bold leading-tight text-text-primary sm:text-6xl lg:text-7xl">
+          <h1 className="min-h-[160px] text-5xl font-bold leading-tight text-text-primary sm:min-h-[184px] sm:text-6xl lg:min-h-[212px] lg:text-7xl">
             <span className="block">I build</span>
-            <span className="gradient-text">{displayText}</span>
-            <span className="ml-1 inline-block h-12 w-[3px] translate-y-2 animate-pulse bg-brand-cyan sm:h-14" />
+            <span className="block min-h-[1.15em] max-w-full overflow-hidden">
+              <span className="gradient-text break-words">{displayText}</span>
+              <span className="ml-1 inline-block h-12 w-[3px] translate-y-2 animate-pulse bg-brand-cyan sm:h-14" />
+            </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
             {SITE.description}

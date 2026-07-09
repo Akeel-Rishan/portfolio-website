@@ -1,5 +1,5 @@
 import { Bot, Brain, Code2, Database, GitBranch, ServerCog } from "lucide-react";
-import type { Certification, Experience, NavLink, Project, SkillCategory } from "@/types";
+import type { Article, Certification, Experience, NavLink, Project, SkillCategory } from "@/types";
 
 export const SITE = {
   name: "Akeel Rishan",
@@ -27,30 +27,43 @@ export const navLinks: NavLink[] = [
   { label: "Projects", href: "#projects" },
   { label: "Demos", href: "#demos" },
   { label: "Resume", href: "#resume-analyzer" },
+  { label: "Articles", href: "#articles" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" }
 ];
 
-export const projects: Project[] = [
+export const articles: Article[] = [
   {
-    name: "RAG PDF Chat System",
-    description: "Document intelligence platform for grounded Q&A across large PDF collections.",
-    image: "/project-rag.svg",
-    imageAlt: "RAG PDF chat system architecture preview",
-    problem: "Teams were losing time searching fragmented PDFs and still lacked confidence in answers.",
-    solution: "Built a cited RAG workflow with ingestion, semantic retrieval, reranking, and Gemini synthesis.",
-    impact: "Reduced document lookup time while keeping responses traceable to source passages.",
-    architecture: ["Frontend", "API", "AI Layer", "VectorDB", "LLM"],
-    tech: ["Python", "LlamaIndex", "Pinecone", "Gemini", "FastAPI", "Next.js"],
-    github: "https://github.com/yourname/rag-pdf-chat-system",
-    demo: "https://rag-pdf-chat.your-domain.com",
-    metrics: [
-      { label: "Retrieval", value: "94% accuracy" },
-      { label: "Response", value: "<2s" },
-      { label: "Indexed", value: "10k docs" }
-    ],
-    featured: true
+    title: "AI Skills That Companies Are Hiring For Right Now",
+    platform: "Medium",
+    image: "/project-agents.svg",
+    imageAlt: "Abstract AI agent workflow article preview",
+    url: "https://medium.com/@your-medium-username/ai-skills-that-companies-are-hiring-for-right-now"
   },
+  {
+    title: "How to Build an AI SaaS Product From Scratch",
+    platform: "Medium",
+    image: "/project-saas.svg",
+    imageAlt: "AI SaaS dashboard article preview",
+    url: "https://medium.com/@your-medium-username/how-to-build-an-ai-saas-product-from-scratch"
+  },
+  {
+    title: "ChatGPT vs Claude vs Gemini: Which One Should You Use?",
+    platform: "Medium",
+    image: "/project-llm.svg",
+    imageAlt: "Language model comparison article preview",
+    url: "https://medium.com/@your-medium-username/chatgpt-vs-claude-vs-gemini-which-one-should-you-use"
+  },
+  {
+    title: "I Used AI Every Day for 30 Days - Here's What Changed",
+    platform: "Medium",
+    image: "/project-voice.svg",
+    imageAlt: "Daily AI workflow article preview",
+    url: "https://medium.com/@your-medium-username/i-used-ai-every-day-for-30-days-heres-what-changed"
+  }
+];
+
+export const projects: Project[] = [
   {
     name: "Multi-Agent Workflow System",
     description: "Coordinated agents that plan, execute, validate, and report complex work.",
@@ -85,24 +98,6 @@ export const projects: Project[] = [
       { label: "Users", value: "200 simulated" },
       { label: "Uptime", value: "98%" },
       { label: "API", value: "sub-100ms" }
-    ]
-  },
-  {
-    name: "Fine-tuned Domain LLM",
-    description: "Domain-specialized model using LoRA adapters and experiment tracking.",
-    image: "/project-llm.svg",
-    imageAlt: "Fine-tuned domain LLM evaluation preview",
-    problem: "Generic model responses missed domain terminology and classification nuance.",
-    solution: "Fine-tuned with PEFT, tracked experiments in W&B, and evaluated against a curated test set.",
-    impact: "Improved task-specific quality while keeping training cost and deployment size practical.",
-    architecture: ["Dataset", "Trainer", "Adapter", "Eval", "LLM"],
-    tech: ["HuggingFace", "LoRA", "W&B", "Python", "PEFT"],
-    github: "https://github.com/yourname/domain-llm",
-    demo: "https://domain-llm.your-domain.com",
-    metrics: [
-      { label: "Lift", value: "23% better" },
-      { label: "Model", value: "1.2B params" },
-      { label: "Score", value: "F1: 0.91" }
     ]
   },
   {
@@ -172,49 +167,18 @@ export const skills: SkillCategory[] = [
 
 export const experiences: Experience[] = [
   {
-    role: "Senior AI Engineer",
-    company: "Applied Intelligence Studio",
-    period: "2024 - Present",
+    role: "AI Engineer Intern",
+    company: "Decode Labs",
+    period: "2026 - Present",
     location: "Remote",
-    initials: "AI",
+    initials: "DL",
     color: "from-brand-purple to-brand-cyan",
     bullets: [
-      "Built RAG infrastructure serving 50k monthly knowledge queries with cited responses.",
-      "Designed agent tool-calling patterns with approvals, retries, and observability.",
-      "Introduced prompt and retrieval evals that caught regressions before release.",
-      "Partnered with product teams to convert prototypes into maintainable AI services."
+      "Contributing to AI-powered product features with a focus on practical LLM workflows.",
+      "Supporting development of prompt flows, API integrations, and full-stack AI prototypes.",
+      "Learning production engineering practices across testing, debugging, and reliable deployment."
     ],
-    tech: ["OpenAI", "LangGraph", "FastAPI", "pgvector", "Docker"]
-  },
-  {
-    role: "Machine Learning Engineer",
-    company: "CloudOps AI",
-    period: "2022 - 2024",
-    location: "Hybrid",
-    initials: "CO",
-    color: "from-cyan-400 to-emerald-400",
-    bullets: [
-      "Deployed anomaly detection models across streaming infrastructure telemetry.",
-      "Reduced inference cost by 35% through batching, caching, and model routing.",
-      "Created monitoring dashboards for model drift, latency, and service health.",
-      "Built internal APIs that made ML predictions available to operations tools."
-    ],
-    tech: ["Python", "MLflow", "Redis", "PostgreSQL", "Kubernetes"]
-  },
-  {
-    role: "Full-Stack AI Developer",
-    company: "Product Lab",
-    period: "2020 - 2022",
-    location: "Colombo",
-    initials: "PL",
-    color: "from-pink-400 to-orange-400",
-    bullets: [
-      "Built analytics dashboards and automation tools for data-heavy workflows.",
-      "Integrated early LLM features into support and reporting products.",
-      "Shipped reusable React components that accelerated product delivery.",
-      "Connected CRM, billing, and messaging APIs for internal operation systems."
-    ],
-    tech: ["React", "Node.js", "TypeScript", "Tailwind", "REST APIs"]
+    tech: ["AI Engineering", "LLMs", "Prompt Engineering", "APIs", "Full-Stack Development"]
   }
 ];
 

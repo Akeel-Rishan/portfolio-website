@@ -55,3 +55,11 @@ export interface NavLink {
   label: string;
   href: string;
 }
+
+export interface Article {
+  title: string;
+  platform: string;
+  image: string;
+  imageAlt: string;
+  url: string;
+}

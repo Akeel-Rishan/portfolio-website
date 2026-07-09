@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { navLinks, SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -46,8 +48,24 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false);
+    if (!href.startsWith("#")) return;
+    if (pathname !== "/") return;
+
     const target = document.querySelector(href);
     target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleLinkClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#") && pathname === "/") {
+      event.preventDefault();
+    }
+
+    handleNavClick(href);
+  };
+
+  const getHref = (href: string) => {
+    if (!href.startsWith("#")) return href;
+    return pathname === "/" ? href : `/${href}`;
   };
 
   return (
@@ -59,8 +77,9 @@ export function Navbar() {
     >
       <nav className="mx-auto flex h-20 w-[min(1120px,calc(100%-32px))] items-center justify-between">
         <Link
-          href="#home"
+          href={pathname === "/" ? "#home" : "/"}
           onClick={(event) => {
+            if (pathname !== "/") return;
             event.preventDefault();
             handleNavClick("#home");
           }}
@@ -72,20 +91,21 @@ export function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           {navLinks.map((link) => {
             const id = link.href.replace("#", "");
-            const active = activeSection === id;
+            const isHashLink = link.href.startsWith("#");
+            const active = isHashLink ? pathname === "/" && activeSection === id : pathname === link.href;
 
             return (
-              <button
+              <Link
                 key={link.href}
-                type="button"
-                onClick={() => handleNavClick(link.href)}
+                href={getHref(link.href)}
+                onClick={(event) => handleLinkClick(event, link.href)}
                 className={cn(
                   "rounded-full px-4 py-2 text-sm font-medium text-text-muted transition duration-300 hover:bg-white/5 hover:text-text-primary",
                   active && "bg-brand-purple/12 text-brand-cyan"
                 )}
               >
                 {link.label}
-              </button>
+              </Link>
             );
           })}
         </div>
@@ -109,20 +129,21 @@ export function Navbar() {
         <div className="mx-auto flex w-[min(1120px,calc(100%-32px))] flex-col gap-2 py-4">
           {navLinks.map((link) => {
             const id = link.href.replace("#", "");
-            const active = activeSection === id;
+            const isHashLink = link.href.startsWith("#");
+            const active = isHashLink ? pathname === "/" && activeSection === id : pathname === link.href;
 
             return (
-              <button
+              <Link
                 key={link.href}
-                type="button"
-                onClick={() => handleNavClick(link.href)}
+                href={getHref(link.href)}
+                onClick={(event) => handleLinkClick(event, link.href)}
                 className={cn(
                   "rounded-xl px-4 py-3 text-left text-sm font-medium text-text-muted transition hover:bg-white/5 hover:text-text-primary",
                   active && "bg-brand-purple/12 text-brand-cyan"
                 )}
               >
                 {link.label}
-              </button>
+              </Link>
             );
           })}
         </div>

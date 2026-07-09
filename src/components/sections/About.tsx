@@ -7,9 +7,9 @@ import { fadeInLeft, fadeInRight, staggerContainer, useScrollReveal } from "@/ho
 import { SITE } from "@/lib/constants";
 
 const facts = [
-  { label: "Years Exp", value: "5+" },
-  { label: "Projects Built", value: "24" },
-  { label: "Models Deployed", value: "12" }
+  { label: "Years Exp", value: "1+" },
+  { label: "Projects Built", value: "10" },
+  { label: "Models Deployed", value: "2" }
 ];
 
 const highlights = [

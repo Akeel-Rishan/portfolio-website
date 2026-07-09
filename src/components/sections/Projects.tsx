@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
 import { projects } from "@/lib/constants";
@@ -85,14 +83,6 @@ function ProjectCard({ project }: { project: Project }) {
         ))}
       </div>
 
-      <div className="mt-6 flex gap-3">
-        <Button href={project.github} variant="outline" size="sm" icon={<Github size={16} />} target="_blank" rel="noreferrer">
-          GitHub
-        </Button>
-        <Button href={project.demo} size="sm" icon={<ExternalLink size={16} />} target="_blank" rel="noreferrer">
-          Live Demo
-        </Button>
-      </div>
     </Card>
   );
 }
@@ -180,14 +170,6 @@ export function Projects() {
                       {tech}
                     </Badge>
                   ))}
-                </div>
-                <div className="mt-7 flex gap-3">
-                  <Button href={featured.github} variant="outline" icon={<Github size={17} />} target="_blank" rel="noreferrer">
-                    GitHub
-                  </Button>
-                  <Button href={featured.demo} icon={<ExternalLink size={17} />} target="_blank" rel="noreferrer">
-                    Live Demo
-                  </Button>
                 </div>
               </div>
             </div>

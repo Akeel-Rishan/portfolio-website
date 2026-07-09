@@ -1,5 +1,6 @@
 import { About } from "@/components/sections/About";
 import { AIDemo } from "@/components/sections/AIDemo";
+import { Articles } from "@/components/sections/Articles";
 import { Certifications } from "@/components/sections/Certifications";
 import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
@@ -18,6 +19,7 @@ export default function Home() {
       <Projects />
       <LiveDemos />
       <ResumeAnalyzer />
+      <Articles />
       <Experience />
       <Certifications />
       <Contact />

@@ -9,8 +9,13 @@ type ResumeAnalysis = {
 };
 
 function extractJson(text: string) {
-  const match = text.match(/\{[\s\S]*\}/);
-  return match?.[0] ?? text;
+  const cleaned = text
+    .trim()
+    .replace(/^```(?:json)?/i, "")
+    .replace(/```$/i, "")
+    .trim();
+  const match = cleaned.match(/\{[\s\S]*\}/);
+  return match?.[0] ?? cleaned;
 }
 
 function normalizeAnalysis(value: unknown): ResumeAnalysis {
@@ -51,7 +56,7 @@ export async function POST(request: Request) {
     const base64 = Buffer.from(await file.arrayBuffer()).toString("base64");
     const text = await callGemini({
       systemPrompt:
-        "You are an ATS resume reviewer. Return only valid JSON with keys strengths, weaknesses, ats_score, and suggestions.",
+        "You are an ATS resume reviewer. Return strict JSON only with keys strengths, weaknesses, ats_score, and suggestions. Do not use markdown.",
       contents: [
         {
           role: "user",
@@ -70,10 +75,17 @@ export async function POST(request: Request) {
         }
       ],
       temperature: 0.25,
-      maxOutputTokens: 1100
+      maxOutputTokens: 2048,
+      responseMimeType: "application/json"
     });
 
-    const parsed = JSON.parse(extractJson(text)) as unknown;
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(extractJson(text)) as unknown;
+    } catch {
+      return NextResponse.json({ error: "Resume analysis returned invalid JSON. Please try again." }, { status: 502 });
+    }
+
     return NextResponse.json(normalizeAnalysis(parsed));
   } catch (error) {
     const message = error instanceof Error ? error.message : "Resume analysis failed";

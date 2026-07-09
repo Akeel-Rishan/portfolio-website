@@ -79,12 +79,13 @@ export function ResumeAnalyzer() {
       });
 
       if (!response.ok) {
-        throw new Error("Resume analysis failed");
+        const result = (await response.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(result?.error ?? "Resume analysis failed");
       }
 
       setResult(await response.json());
-    } catch {
-      setError("Resume analysis failed. Check the API key and upload a valid PDF.");
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Resume analysis failed. Upload a valid PDF and try again.");
     } finally {
       setIsAnalyzing(false);
     }
