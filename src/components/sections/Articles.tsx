@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArticleCard } from "@/components/articles/ArticleCard";
+import { ArticleCarousel } from "@/components/articles/ArticleCarousel";
 import { Badge } from "@/components/ui/Badge";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
 import type { Article } from "@/types";
@@ -22,12 +22,8 @@ export function Articles({ articles }: { articles: Article[] }) {
           </p>
         </motion.div>
 
-        <motion.div variants={staggerContainer} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {articles.map((article) => (
-            <motion.div key={article.title} variants={fadeInUp}>
-              <ArticleCard article={article} />
-            </motion.div>
-          ))}
+        <motion.div variants={fadeInUp}>
+          <ArticleCarousel articles={articles} />
         </motion.div>
       </motion.div>
     </section>
