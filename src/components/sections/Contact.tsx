@@ -8,26 +8,25 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { fadeInLeft, fadeInRight, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { SITE } from "@/lib/constants";
+import type { PortfolioSiteConfig } from "@/lib/sanity/data";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
-const contactMethods = [
-  { label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, icon: Mail },
-  { label: "LinkedIn", value: SITE.linkedinLabel, href: SITE.linkedin, icon: Linkedin },
-  { label: "Kaggle", value: SITE.kaggleLabel, href: SITE.kaggle, icon: Globe },
-  { label: "GitHub", value: SITE.githubHandle, href: SITE.github, icon: Github }
-];
-
 const subjectOptions = ["Job Opportunity", "Collaboration", "General Question", "Open Source"];
 
-export function Contact() {
+export function Contact({ config }: { config: PortfolioSiteConfig }) {
   const { ref, inView } = useScrollReveal<HTMLElement>();
   const { trackContactSubmit } = useAnalytics();
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [errorMessage, setErrorMessage] = useState("");
+  const contactMethods = [
+    { label: "Email", value: config.email, href: `mailto:${config.email}`, icon: Mail },
+    { label: "LinkedIn", value: config.linkedinLabel, href: config.linkedin, icon: Linkedin },
+    { label: "Kaggle", value: config.kaggleLabel, href: config.kaggle, icon: Globe },
+    { label: "GitHub", value: config.githubHandle, href: config.github, icon: Github }
+  ];
 
   const validateForm = (formData: FormData) => {
     const nextErrors: FieldErrors = {};

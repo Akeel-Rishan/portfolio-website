@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
-import { projects } from "@/lib/constants";
 import type { Project } from "@/types";
 
 function ArchitectureFlow({ nodes, featured = false }: { nodes: string[]; featured?: boolean }) {
@@ -87,10 +86,14 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-export function Projects() {
+export function Projects({ projects, featuredProject }: { projects: Project[]; featuredProject: Project | null }) {
   const { ref, inView } = useScrollReveal<HTMLElement>();
-  const featured = projects.find((project) => project.featured) ?? projects[0];
+  const featured = featuredProject ?? projects.find((project) => project.featured) ?? projects[0];
   const rest = projects.filter((project) => project.name !== featured.name);
+
+  if (!featured) {
+    return null;
+  }
 
   return (
     <section id="projects" ref={ref} className="section-shell">

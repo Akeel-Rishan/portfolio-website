@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { fadeInLeft, fadeInRight, fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
-import { experiences } from "@/lib/constants";
+import type { Experience as ExperienceItem } from "@/types";
 
-export function Experience() {
+export function Experience({ experiences }: { experiences: ExperienceItem[] }) {
   const { ref, inView } = useScrollReveal<HTMLElement>();
 
   return (

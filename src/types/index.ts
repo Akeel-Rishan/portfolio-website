@@ -1,5 +1,3 @@
-import type { LucideIcon } from "lucide-react";
-
 export type BadgeVariant = "purple" | "cyan" | "green" | "orange" | "pink";
 
 export interface ProjectMetric {
@@ -25,7 +23,7 @@ export interface Project {
 
 export interface SkillCategory {
   category: string;
-  icon: LucideIcon;
+  iconName: string;
   skills: string[];
   proficiency: number;
   variant: BadgeVariant;

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { ArticleCard } from "@/components/articles/ArticleCard";
 import { Badge } from "@/components/ui/Badge";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
-import { articles } from "@/lib/constants";
+import type { Article } from "@/types";
 
-export function Articles() {
+export function Articles({ articles }: { articles: Article[] }) {
   const { ref, inView } = useScrollReveal<HTMLElement>();
 
   return (

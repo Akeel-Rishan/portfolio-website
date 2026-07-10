@@ -1,4 +1,3 @@
-import { Bot, Brain, Code2, Database, GitBranch, ServerCog } from "lucide-react";
 import type { Article, Certification, Experience, NavLink, Project, SkillCategory } from "@/types";
 
 export const SITE = {
@@ -123,42 +122,42 @@ export const projects: Project[] = [
 export const skills: SkillCategory[] = [
   {
     category: "LLMs & Prompting",
-    icon: Brain,
+    iconName: "Brain",
     skills: ["GPT-4", "Claude", "Gemini", "Mistral", "Llama"],
     proficiency: 94,
     variant: "purple"
   },
   {
     category: "AI Agents",
-    icon: Bot,
+    iconName: "Bot",
     skills: ["LangGraph", "CrewAI", "AutoGen", "Tool Use", "ReAct"],
     proficiency: 90,
     variant: "cyan"
   },
   {
     category: "RAG Systems",
-    icon: Database,
+    iconName: "Database",
     skills: ["LlamaIndex", "Pinecone", "Weaviate", "Chroma", "FAISS"],
     proficiency: 92,
     variant: "green"
   },
   {
     category: "MLOps",
-    icon: GitBranch,
+    iconName: "GitBranch",
     skills: ["HuggingFace", "W&B", "MLflow", "Docker", "GitHub Actions"],
     proficiency: 84,
     variant: "orange"
   },
   {
     category: "Backend",
-    icon: ServerCog,
+    iconName: "ServerCog",
     skills: ["FastAPI", "PostgreSQL", "Redis", "Python", "REST APIs"],
     proficiency: 88,
     variant: "pink"
   },
   {
     category: "Frontend",
-    icon: Code2,
+    iconName: "Code2",
     skills: ["Next.js", "TypeScript", "React", "Tailwind", "Framer Motion"],
     proficiency: 86,
     variant: "purple"

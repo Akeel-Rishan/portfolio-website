@@ -1,12 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Bot, Brain, Code2, Cpu, Database, GitBranch, ServerCog, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
-import { skills } from "@/lib/constants";
+import type { SkillCategory } from "@/types";
 
-export function Skills() {
+const iconMap = {
+  Bot,
+  Brain,
+  Code2,
+  Cpu,
+  Database,
+  GitBranch,
+  ServerCog,
+  Zap
+};
+
+export function Skills({ skills }: { skills: SkillCategory[] }) {
   const { ref, inView } = useScrollReveal<HTMLElement>();
 
   return (
@@ -21,7 +33,7 @@ export function Skills() {
 
         <motion.div variants={staggerContainer} className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {skills.map((group) => {
-            const Icon = group.icon;
+            const Icon = iconMap[group.iconName as keyof typeof iconMap] ?? Brain;
 
             return (
               <motion.div key={group.category} variants={fadeInUp}>

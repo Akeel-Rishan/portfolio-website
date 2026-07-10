@@ -4,13 +4,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { fadeInLeft, fadeInRight, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
-import { SITE } from "@/lib/constants";
-
-const facts = [
-  { label: "Years Exp", value: "1+" },
-  { label: "Projects Built", value: "10" },
-  { label: "Models Deployed", value: "2" }
-];
+import type { PortfolioSiteConfig } from "@/lib/sanity/data";
 
 const highlights = [
   "Open Source Contributor",
@@ -18,7 +12,7 @@ const highlights = [
   "Production Systems Builder"
 ];
 
-export function About() {
+export function About({ config }: { config: PortfolioSiteConfig }) {
   const { ref, inView } = useScrollReveal<HTMLElement>();
 
   return (
@@ -36,21 +30,12 @@ export function About() {
           </h2>
           <div className="mt-4 h-1 w-28 rounded-full bg-gradient-to-r from-brand-purple to-brand-cyan" />
           <div className="mt-7 space-y-5 text-base leading-8 text-muted-foreground">
-            <p>
-              I am an AI engineer focused on shipping LLM systems that move past demos and into
-              dependable product workflows.
-            </p>
-            <p>
-              My background blends full-stack engineering, applied machine learning, retrieval
-              systems, agent orchestration, and evaluation pipelines.
-            </p>
-            <p>
-              I care about the operational details: latency, grounding, monitoring, cost, fallback
-              behavior, and the human trust needed to put AI in production.
-            </p>
+            {config.aboutParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {facts.map((fact) => (
+            {config.aboutStats.map((fact) => (
               <Card key={fact.label} hover glow className="p-5 text-center">
                 <p className="gradient-text text-3xl font-bold">{fact.value}</p>
                 <p className="mt-2 text-xs uppercase tracking-[0.18em] text-text-muted">{fact.label}</p>
@@ -62,7 +47,7 @@ export function About() {
         <motion.div variants={fadeInRight} className="space-y-5">
           <div className="mx-auto flex aspect-square w-full max-w-sm items-center justify-center rounded-xl border border-brand-purple/30 bg-gradient-to-br from-brand-purple/30 via-dark-card to-brand-cyan/20 p-6 shadow-neon">
             <div className="flex h-36 w-36 items-center justify-center rounded-full border border-white/15 bg-dark-bg/70 text-5xl font-bold gradient-text">
-              {SITE.initials}
+              {config.initials}
             </div>
           </div>
           {highlights.map((highlight, index) => (

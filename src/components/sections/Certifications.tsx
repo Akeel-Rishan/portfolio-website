@@ -5,9 +5,9 @@ import { Award } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
-import { certifications } from "@/lib/constants";
+import type { Certification } from "@/types";
 
-export function Certifications() {
+export function Certifications({ certifications }: { certifications: Certification[] }) {
   const { ref, inView } = useScrollReveal<HTMLElement>();
 
   return (

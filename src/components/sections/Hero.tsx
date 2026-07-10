@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { SITE } from "@/lib/constants";
+import type { PortfolioSiteConfig } from "@/lib/sanity/data";
 
 type GitHubStats = {
   public_repos: number;
@@ -13,8 +13,8 @@ type GitHubStats = {
   public_gists: number;
 };
 
-export function Hero() {
-  const titles = useMemo(() => ["AI Engineer", "LLM Systems Builder", "Agent Developer"], []);
+export function Hero({ config }: { config: PortfolioSiteConfig }) {
+  const titles = useMemo(() => [config.title, "LLM Systems Builder", "Agent Developer"], [config.title]);
   const { trackCVDownload } = useAnalytics();
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
@@ -50,7 +50,7 @@ export function Hero() {
 
     async function loadGitHubStats() {
       try {
-        const response = await fetch(`https://api.github.com/users/${SITE.githubUsername}`, {
+        const response = await fetch(`https://api.github.com/users/${config.githubUsername}`, {
           signal: controller.signal
         });
 
@@ -73,7 +73,7 @@ export function Hero() {
 
     loadGitHubStats();
     return () => controller.abort();
-  }, []);
+  }, [config.githubUsername]);
 
   return (
     <section id="home" className="relative flex min-h-screen items-center overflow-hidden pt-20">
@@ -98,13 +98,15 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 min-w-0"
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-200">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-300" />
-            </span>
-            Available for work
-          </div>
+          {config.availableForWork && (
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-200">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-300" />
+              </span>
+              Available for work
+            </div>
+          )}
           <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-brand-cyan">
             Production AI Systems
           </p>
@@ -116,23 +118,23 @@ export function Hero() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
-            {SITE.description}
+            {config.description}
           </p>
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Button href="#projects">
               View Projects
               <ArrowDown size={18} />
             </Button>
-            <Button href={SITE.cv} variant="outline" download onClick={trackCVDownload}>
+            <Button href={config.cv} variant="outline" download onClick={trackCVDownload}>
               Download CV
               <Download size={18} />
             </Button>
           </div>
           <div className="mt-8 flex items-center gap-4">
             {[
-              { href: SITE.github, label: "GitHub", icon: Github },
-              { href: SITE.linkedin, label: "LinkedIn", icon: Linkedin },
-              { href: SITE.twitter, label: "Twitter", icon: Twitter }
+              { href: config.github, label: "GitHub", icon: Github },
+              { href: config.linkedin, label: "LinkedIn", icon: Linkedin },
+              { href: config.twitter, label: "Twitter", icon: Twitter }
             ].map((item) => {
               const Icon = item.icon;
               return (
