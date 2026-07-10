@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArticleCarousel } from "@/components/articles/ArticleCarousel";
+import { ArticleCarousel } from "@/components/ui/ArticleCarousel";
 import { Badge } from "@/components/ui/Badge";
 import { fadeInUp, staggerContainer, useScrollReveal } from "@/hooks/useScrollReveal";
 import type { Article } from "@/types";
@@ -17,9 +17,6 @@ export function Articles({ articles }: { articles: Article[] }) {
           <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-bold leading-tight">
             Articles
           </h2>
-          <p className="mt-4 leading-8 text-muted-foreground">
-            Thoughts, tutorials, and insights on AI, software engineering, SaaS, and technology.
-          </p>
         </motion.div>
 
         <motion.div variants={fadeInUp}>
