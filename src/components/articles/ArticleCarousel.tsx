@@ -88,11 +88,13 @@ export function ArticleCarousel({ articles }: { articles: Article[] }) {
   const activeArticle = displayArticles[activeIndex];
   const carouselItems = useMemo(
     () =>
-      displayArticles.map((article, index) => ({
-        article,
-        index,
-        offset: getCircularOffset(index, activeIndex, displayArticles.length)
-      })),
+      displayArticles
+        .map((article, index) => ({
+          article,
+          index,
+          offset: getCircularOffset(index, activeIndex, displayArticles.length)
+        }))
+        .filter((item) => isVisibleOffset(item.offset)),
     [activeIndex, displayArticles]
   );
 
@@ -168,15 +170,13 @@ export function ArticleCarousel({ articles }: { articles: Article[] }) {
         {carouselItems.map(({ article, index, offset }) => {
           const pose = getCoverflowPose(offset);
           const isActive = index === activeIndex;
-          const isVisible = isVisibleOffset(offset);
 
           return (
             <motion.div
               key={`${article.title}-${index}`}
               className={cn(
                 "absolute left-1/2 top-1/2 w-[78%] max-w-[340px] will-change-transform sm:w-[58%] sm:max-w-[380px] md:w-[44%] lg:w-[34%]",
-                !isActive && "pointer-events-none",
-                !isVisible && "invisible"
+                !isActive && "pointer-events-none"
               )}
               style={{
                 zIndex: pose.zIndex,
@@ -191,7 +191,7 @@ export function ArticleCarousel({ articles }: { articles: Article[] }) {
                 filter: pose.filter
               }}
               transition={{
-                duration: isVisible ? TRANSITION_SECONDS : 0,
+                duration: TRANSITION_SECONDS,
                 ease: [0.42, 0, 0.2, 1]
               }}
             >

@@ -183,35 +183,35 @@ export const experiences: Experience[] = [
 
 export const certifications: Certification[] = [
   {
-    name: "AWS Certified Machine Learning - Specialty",
-    issuer: "AWS",
-    issueDate: "Issued Feb 2025",
-    credentialId: "AWS-MLS-0249",
-    url: "https://aws.amazon.com/certification",
-    color: "from-orange-400 to-yellow-300"
-  },
-  {
-    name: "Professional Machine Learning Engineer",
-    issuer: "Google Cloud",
-    issueDate: "Issued Nov 2024",
-    credentialId: "GCP-PMLE-1182",
-    url: "https://cloud.google.com/learn/certification",
-    color: "from-cyan-400 to-blue-500"
-  },
-  {
-    name: "DeepLearning.AI Specializations",
-    issuer: "DeepLearning.AI",
-    issueDate: "Issued Aug 2024",
-    credentialId: "DLAI-GENAI-7421",
-    url: "https://www.deeplearning.ai",
+    name: "AI Engineer Agentic Track: The Complete Agent & MCP Course",
+    issuer: "Udemy",
+    issueDate: "Issued 2025",
+    credentialId: "UDEMY-AGENTIC-TRACK-2025",
+    url: "https://www.udemy.com",
     color: "from-brand-purple to-pink-400"
   },
   {
-    name: "Hugging Face NLP Course",
-    issuer: "Hugging Face",
-    issueDate: "Issued Apr 2024",
-    credentialId: "HF-NLP-3907",
-    url: "https://huggingface.co/learn",
+    name: "AI Engineer Core Track: LLM Engineering, RAG, QLoRA, Agents",
+    issuer: "Udemy",
+    issueDate: "Issued 2025",
+    credentialId: "UDEMY-AI-CORE-2025",
+    url: "https://www.udemy.com",
+    color: "from-brand-cyan to-blue-500"
+  },
+  {
+    name: "Complete MLOps Bootcamp With 10+ End To End ML Projects",
+    issuer: "Udemy",
+    issueDate: "Issued 2026",
+    credentialId: "UDEMY-MLOPS-BOOTCAMP-2026",
+    url: "https://www.udemy.com",
     color: "from-emerald-400 to-brand-cyan"
+  },
+  {
+    name: "The Agentic AI Engineering Masterclass 2026",
+    issuer: "Udemy",
+    issueDate: "Issued 2026",
+    credentialId: "UDEMY-AGENTIC-MASTERCLASS-2026",
+    url: "https://www.udemy.com",
+    color: "from-orange-400 to-yellow-300"
   }
 ];

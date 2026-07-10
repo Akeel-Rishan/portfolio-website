@@ -35,7 +35,6 @@ export function Footer() {
       <div className="border-t border-dark-border py-4">
         <div className="mx-auto flex w-[min(1120px,calc(100%-32px))] flex-col justify-between gap-2 text-sm text-text-muted sm:flex-row">
           <p>&copy; {year} {SITE.name}. All rights reserved.</p>
-          <p>Built with Next.js + AI</p>
         </div>
       </div>
     </footer>

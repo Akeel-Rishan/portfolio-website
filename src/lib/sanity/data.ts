@@ -19,6 +19,8 @@ import {
   SKILLS_QUERY
 } from "./queries";
 
+const SANITY_CACHE_TAG = "sanity-content";
+
 export type PortfolioSiteConfig = {
   name: string;
   initials: string;
@@ -49,7 +51,13 @@ async function fetchSanity<T>(query: string): Promise<T | null> {
   if (!shouldUseSanity()) return null;
 
   try {
-    return await client.fetch<T>(query, {}, { next: { revalidate: 60 } });
+    return await client.fetch<T>(
+      query,
+      {},
+      process.env.NODE_ENV === "development"
+        ? { cache: "no-store" }
+        : { next: { revalidate: 60, tags: [SANITY_CACHE_TAG] } }
+    );
   } catch (error) {
     console.warn("[sanity] Falling back to local portfolio data", error);
     return null;

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Award } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
@@ -28,9 +29,21 @@ export function Certifications({ certifications }: { certifications: Certificati
                 <div className="absolute right-4 top-4 text-brand-cyan">
                   <Award size={22} />
                 </div>
-                <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${certification.color} font-bold text-white`}>
-                  {certification.issuer.slice(0, 2).toUpperCase()}
-                </div>
+                {certification.issuer.toLowerCase() === "udemy" ? (
+                  <div className="mb-6 flex h-14 w-28 items-center justify-center rounded-xl border border-white/10 bg-white px-3 shadow-[0_0_24px_rgba(164,53,240,0.18)]">
+                    <Image
+                      src="/udemy-logo.png"
+                      alt="Udemy"
+                      width={96}
+                      height={45}
+                      className="h-auto w-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${certification.color} font-bold text-white`}>
+                    {certification.issuer.slice(0, 2).toUpperCase()}
+                  </div>
+                )}
                 <p className="text-sm text-brand-cyan">{certification.issuer}</p>
                 <h3 className="mt-2 text-xl font-semibold text-text-primary">{certification.name}</h3>
                 <div className="mt-5 space-y-2 text-sm text-muted-foreground">

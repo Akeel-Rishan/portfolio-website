@@ -12,7 +12,7 @@ export const client = createClient({
   projectId: sanityConfig.projectId ?? "missing-project-id",
   dataset: sanityConfig.dataset,
   apiVersion: sanityConfig.apiVersion,
-  useCdn: process.env.NODE_ENV === "production",
+  useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
   stega: {
     enabled: false
