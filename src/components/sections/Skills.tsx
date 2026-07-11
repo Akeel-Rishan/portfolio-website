@@ -27,7 +27,7 @@ export function Skills({ skills }: { skills: SkillCategory[] }) {
         <motion.div variants={fadeInUp} className="mx-auto mb-10 max-w-2xl text-center lg:mx-0 lg:text-left">
           <Badge variant="purple">Skills</Badge>
           <h2 className="mt-4 text-[clamp(24px,6vw,36px)] font-bold leading-tight lg:text-[clamp(2rem,4vw,3rem)]">
-            The AI engineering stack, from model behavior to product surface.
+            Technical Skills
           </h2>
         </motion.div>
 

@@ -1,30 +1,29 @@
 import { ImageResponse } from "next/og";
-import { SITE } from "@/lib/constants";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yourdomain.com"; // REPLACE WITH YOUR ACTUAL DOMAIN
+const displayDomain = BASE_URL.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
 export const runtime = "edge";
-export const alt = `${SITE.name} - AI Engineer Portfolio`;
-export const size = {
-  width: 1200,
-  height: 630
-};
+export const alt = "Akeel Rishan - AI Engineer";
+export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
   return new ImageResponse(
     (
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          position: "relative",
-          overflow: "hidden",
+          width: "1200px",
+          height: "630px",
+          background: "#0A0A0F",
           display: "flex",
           flexDirection: "column",
+          alignItems: "flex-start",
           justifyContent: "center",
-          padding: "82px",
-          background: "#0A0A0F",
-          color: "#F8F8FF",
-          fontFamily: "Inter, Arial, sans-serif"
+          padding: "80px",
+          fontFamily: "system-ui, sans-serif",
+          position: "relative",
+          color: "#F8F8FF"
         }}
       >
         <div
@@ -32,76 +31,105 @@ export default function Image() {
             position: "absolute",
             inset: 0,
             backgroundImage:
-              "linear-gradient(rgba(124,58,237,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(6,182,212,0.10) 1px, transparent 1px)",
-            backgroundSize: "42px 42px"
+              "radial-gradient(circle at 20% 50%, rgba(124,58,237,0.15) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(6,182,212,0.1) 0%, transparent 50%)"
           }}
         />
         <div
           style={{
             position: "absolute",
-            width: 520,
-            height: 520,
-            right: -120,
-            bottom: -160,
-            borderRadius: 999,
-            background: "radial-gradient(circle, rgba(124,58,237,0.72), rgba(6,182,212,0.28) 42%, transparent 68%)",
-            filter: "blur(12px)"
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "4px",
+            background: "linear-gradient(90deg,#7C3AED,#06B6D4)"
           }}
         />
-        <div style={{ position: "relative", display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              color: "#06B6D4",
-              fontSize: 24,
-              fontWeight: 700,
-              letterSpacing: 3,
-              textTransform: "uppercase"
-            }}
-          >
-            <span style={{ width: 14, height: 14, borderRadius: 999, background: "#22C55E" }} />
-            Available for production AI work
-          </div>
-          <h1 style={{ margin: "34px 0 0", fontSize: 92, lineHeight: 1, fontWeight: 900 }}>
-            {SITE.name}
-          </h1>
-          <div
-            style={{
-              marginTop: 20,
-              fontSize: 58,
-              lineHeight: 1.1,
-              fontWeight: 800,
-              color: "#A78BFA"
-            }}
-          >
-            AI Engineer
-          </div>
-          <p style={{ width: 860, marginTop: 28, fontSize: 28, lineHeight: 1.35, color: "#D1D5DB" }}>
-            Production-grade LLM systems, RAG pipelines, autonomous agents, and measurable AI product engineering.
-          </p>
-          <div style={{ display: "flex", gap: 14, marginTop: 42 }}>
-            {["LLMs", "RAG", "Agents", "FastAPI", "Next.js"].map((badge) => (
-              <span
-                key={badge}
-                style={{
-                  padding: "12px 18px",
-                  borderRadius: 999,
-                  border: "1px solid rgba(6,182,212,0.46)",
-                  background: "rgba(17,17,24,0.86)",
-                  color: "#CFFAFE",
-                  fontSize: 22,
-                  fontWeight: 700
-                }}
-              >
-                {badge}
-              </span>
-            ))}
-          </div>
+        <div
+          style={{
+            width: "80px",
+            height: "80px",
+            borderRadius: "50%",
+            background: "linear-gradient(135deg,#7C3AED,#06B6D4)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: "32px",
+            fontSize: "28px",
+            fontWeight: 700,
+            color: "white"
+          }}
+        >
+          AR
+        </div>
+        <div
+          style={{
+            fontSize: "64px",
+            fontWeight: 700,
+            color: "#F8F8FF",
+            lineHeight: 1.1,
+            marginBottom: "16px"
+          }}
+        >
+          Akeel Rishan
+        </div>
+        <div
+          style={{
+            fontSize: "28px",
+            color: "#7C3AED",
+            fontWeight: 600,
+            marginBottom: "20px"
+          }}
+        >
+          AI Engineer & Software Developer
+        </div>
+        <div
+          style={{
+            fontSize: "18px",
+            color: "#9CA3AF",
+            lineHeight: 1.5,
+            maxWidth: "700px",
+            marginBottom: "40px"
+          }}
+        >
+          Building production-grade LLM systems, RAG pipelines, and autonomous AI agents - Sri Lanka
+        </div>
+        <div
+          style={{
+            display: "flex",
+            gap: "12px",
+            flexWrap: "wrap"
+          }}
+        >
+          {["LLMs", "RAG", "AI Agents", "Next.js", "FastAPI", "Gemini"].map((tag) => (
+            <div
+              key={tag}
+              style={{
+                padding: "8px 16px",
+                background: "rgba(124,58,237,0.15)",
+                border: "1px solid rgba(124,58,237,0.3)",
+                borderRadius: "20px",
+                fontSize: "14px",
+                color: "#A78BFA",
+                fontWeight: 500
+              }}
+            >
+              {tag}
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "40px",
+            right: "80px",
+            fontSize: "16px",
+            color: "#6B7280"
+          }}
+        >
+          {displayDomain}
         </div>
       </div>
     ),
-    size
+    { ...size }
   );
 }

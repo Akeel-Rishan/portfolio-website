@@ -89,7 +89,7 @@ export function Projects({ projects, featuredProject }: { projects: Project[]; f
         <motion.div variants={fadeInUp} className="mx-auto mb-10 max-w-2xl text-center lg:mx-0 lg:text-left">
           <Badge variant="cyan">Projects</Badge>
           <h2 className="mt-4 text-2xl font-bold leading-tight sm:text-3xl lg:text-4xl">
-            AI systems designed around problem, solution, and measurable impact.
+            Projects by Akeel Rishan
           </h2>
         </motion.div>
 

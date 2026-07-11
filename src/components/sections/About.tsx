@@ -27,13 +27,17 @@ export function About({ config }: { config: PortfolioSiteConfig }) {
         <motion.div variants={fadeInLeft} className="order-2 min-w-0 text-center lg:order-1 lg:text-left">
           <Badge variant="cyan">About</Badge>
           <h2 className="mt-4 text-[clamp(22px,6vw,28px)] font-bold leading-tight text-text-primary sm:text-[clamp(26px,4vw,32px)] lg:text-[clamp(2rem,4vw,3rem)]">
-            Building AI products where reliability matters.
+            About Akeel Rishan
           </h2>
           <div className="mx-auto mt-4 h-1 w-28 rounded-full bg-gradient-to-r from-brand-purple to-brand-cyan lg:mx-0" />
           <div className="mx-auto mt-6 max-w-xl space-y-4 text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8 lg:mx-0 lg:mt-7 lg:max-w-none">
             {config.aboutParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+            <p className="sr-only">
+              Akeel Rishan is an AI Engineer from Sri Lanka building LLM systems, RAG pipelines, AI agents, Next.js
+              products, and FastAPI services.
+            </p>
           </div>
           <div className="mx-auto mt-6 grid w-full max-w-md grid-cols-3 gap-2 sm:gap-4 lg:mx-0 lg:mt-8 lg:max-w-none lg:flex lg:gap-6">
             {config.aboutStats.map((fact) => (

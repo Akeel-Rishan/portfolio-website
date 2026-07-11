@@ -2,15 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Github, Linkedin, Twitter } from "lucide-react";
+import { ArrowDown, Clock, Github, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { useAnalytics } from "@/hooks/useAnalytics";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import type { PortfolioSiteConfig } from "@/lib/sanity/data";
 
 export function Hero({ config }: { config: PortfolioSiteConfig }) {
   const titles = useMemo(() => ["LLM Systems", "AI Agents", "RAG Pipelines"], []);
-  const { trackCVDownload } = useAnalytics();
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -43,7 +41,11 @@ export function Hero({ config }: { config: PortfolioSiteConfig }) {
   }, [displayText, isDeleting, titleIndex, titles]);
 
   return (
-    <section id="home" className="relative flex min-h-screen items-center overflow-hidden pt-20">
+    <section
+      id="home"
+      aria-label="Akeel Rishan Hero"
+      className="relative flex min-h-screen items-center overflow-hidden pt-20"
+    >
       <div className="pointer-events-none absolute inset-0">
         {Array.from({ length: particleCount }).map((_, index) => (
           <span
@@ -78,6 +80,22 @@ export function Hero({ config }: { config: PortfolioSiteConfig }) {
             Production AI Systems
           </p>
           <h1 className="min-h-[116px] text-[clamp(28px,8vw,36px)] font-bold leading-tight text-text-primary sm:min-h-[136px] sm:text-[clamp(32px,7vw,42px)] lg:min-h-[164px] lg:text-[clamp(36px,5vw,52px)] xl:min-h-[212px] xl:text-7xl">
+            <span
+              style={{
+                position: "absolute",
+                width: "1px",
+                height: "1px",
+                padding: 0,
+                margin: "-1px",
+                overflow: "hidden",
+                clip: "rect(0,0,0,0)",
+                whiteSpace: "nowrap",
+                borderWidth: 0
+              }}
+            >
+              Akeel Rishan - AI Engineer and Software Developer from Sri Lanka specializing in LLM systems, RAG
+              pipelines, and autonomous AI agents
+            </span>
             <span className="block">I build</span>
             <span className="block min-h-[1.15em] max-w-full overflow-hidden">
               <span className="gradient-text break-words">{displayText}</span>
@@ -92,9 +110,15 @@ export function Hero({ config }: { config: PortfolioSiteConfig }) {
               View Projects
               <ArrowDown size={18} />
             </Button>
-            <Button href={config.cv} variant="outline" download onClick={trackCVDownload} className="min-h-12 w-full text-[15px] sm:w-auto sm:min-w-40">
-              Download CV
-              <Download size={18} />
+            <Button
+              type="button"
+              variant="outline"
+              disabled
+              aria-disabled="true"
+              className="min-h-12 w-full cursor-not-allowed border-white/15 bg-white/[0.03] text-[15px] text-text-muted opacity-80 hover:scale-100 hover:bg-white/[0.03] hover:text-text-muted sm:w-auto sm:min-w-40"
+            >
+              CV Coming Soon
+              <Clock size={18} />
             </Button>
           </div>
           <div className="mt-8 flex items-center justify-center gap-4 lg:justify-start lg:gap-5">

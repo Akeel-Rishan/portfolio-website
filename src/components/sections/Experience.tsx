@@ -15,7 +15,7 @@ export function Experience({ experiences }: { experiences: ExperienceItem[] }) {
         <motion.div variants={fadeInUp} className="mx-auto mb-12 max-w-2xl text-center">
           <Badge variant="green">Experience</Badge>
           <h2 className="mt-4 text-[clamp(22px,6vw,28px)] font-bold leading-tight sm:text-[clamp(26px,4vw,32px)] lg:text-[clamp(2rem,4vw,3rem)]">
-            Building practical AI products through hands-on engineering experience.
+            Work Experience
           </h2>
         </motion.div>
 

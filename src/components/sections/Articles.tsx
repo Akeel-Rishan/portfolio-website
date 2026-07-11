@@ -15,7 +15,7 @@ export function Articles({ articles }: { articles: Article[] }) {
         <motion.div variants={fadeInUp} className="mx-auto mb-8 max-w-2xl text-center lg:mx-0 lg:mb-10 lg:text-left">
           <Badge variant="pink">Articles</Badge>
           <h2 className="mt-4 text-[clamp(26px,8vw,36px)] font-bold leading-tight lg:text-[clamp(2rem,4vw,3rem)]">
-            Articles
+            Akeel Rishan on Medium
           </h2>
         </motion.div>
 

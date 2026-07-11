@@ -1,5 +1,4 @@
 import { About } from "@/components/sections/About";
-import { AIDemo } from "@/components/sections/AIDemo";
 import { Articles } from "@/components/sections/Articles";
 import { Certifications } from "@/components/sections/Certifications";
 import { Contact } from "@/components/sections/Contact";
@@ -42,7 +41,6 @@ export default async function Home() {
       <Experience experiences={experiences} />
       <Certifications certifications={certifications} />
       <Contact config={siteConfig} />
-      <AIDemo />
     </>
   );
 }

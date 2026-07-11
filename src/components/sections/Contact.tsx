@@ -98,7 +98,7 @@ export function Contact({ config }: { config: PortfolioSiteConfig }) {
         <motion.div variants={fadeInLeft} className="order-first text-center lg:order-first lg:text-left">
           <Badge variant="pink">Contact</Badge>
           <h2 className="mt-4 text-center text-2xl font-bold leading-tight sm:text-3xl lg:text-left lg:text-4xl">
-            Let&apos;s build an AI system that earns trust.
+            Contact Akeel Rishan
           </h2>
           <p className="mt-3 text-center text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8 lg:mt-4 lg:text-left">
             Reach out for LLM product engineering, RAG architecture, agent systems,
