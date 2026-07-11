@@ -141,9 +141,16 @@ export async function POST(request: Request) {
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
           <p>Hi ${safeName},</p>
-          <p>Thanks for contacting me through my portfolio. I received your message and will reply as soon as possible.</p>
-          <p style="margin-top: 16px;">For reference, your subject was: <strong>${safeSubject}</strong></p>
-          <p style="margin-top: 20px;">Best,<br />Akeel Rishan</p>
+          <p>Thank you for reaching out! I've received your message and appreciate your interest.</p>
+          <p>I'll review your inquiry and get back to you as soon as possible, usually within 24-48 hours.</p>
+          <p style="margin-top: 20px; margin-bottom: 10px;">In the meantime, feel free to explore:</p>
+          <ul style="padding-left: 20px; margin-top: 0;">
+            <li>Portfolio: <a href="https://akeelrishan.me" style="color: #2563eb;">https://akeelrishan.me</a></li>
+            <li>GitHub: <a href="https://github.com/Akeel-Rishan" style="color: #2563eb;">https://github.com/Akeel-Rishan</a></li>
+            <li>Medium: <a href="https://medium.com/@AkeelRishan" style="color: #2563eb;">https://medium.com/@AkeelRishan</a></li>
+            <li>LinkedIn: <a href="https://linkedin.com/in/akeelrishan" style="color: #2563eb;">https://linkedin.com/in/akeelrishan</a></li>
+          </ul>
+          <p style="margin-top: 24px;">Best regards,<br /><strong>Akeel Rishan</strong><br />AI Engineer</p>
         </div>
       `
     });
