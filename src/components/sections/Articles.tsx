@@ -12,9 +12,9 @@ export function Articles({ articles }: { articles: Article[] }) {
   return (
     <section id="articles" ref={ref} className="section-shell">
       <motion.div variants={staggerContainer} initial="hidden" animate={inView ? "visible" : "hidden"}>
-        <motion.div variants={fadeInUp} className="mb-10 max-w-2xl">
+        <motion.div variants={fadeInUp} className="mx-auto mb-8 max-w-2xl text-center lg:mx-0 lg:mb-10 lg:text-left">
           <Badge variant="pink">Articles</Badge>
-          <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-bold leading-tight">
+          <h2 className="mt-4 text-[clamp(26px,8vw,36px)] font-bold leading-tight lg:text-[clamp(2rem,4vw,3rem)]">
             Articles
           </h2>
         </motion.div>

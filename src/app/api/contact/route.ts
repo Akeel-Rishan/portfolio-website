@@ -17,6 +17,8 @@ type RateLimitEntry = {
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
 const RATE_LIMIT_MAX = 3;
 const submissions = new Map<string, RateLimitEntry>();
+const DEFAULT_CONTACT_EMAIL = "mohamedrishanakeel13867@gmail.com";
+const DEFAULT_RESEND_FROM_EMAIL = "Akeel Rishan <onboarding@resend.dev>";
 
 function sanitize(value: string) {
   return value
@@ -106,9 +108,12 @@ export async function POST(request: Request) {
     const safeSubject = sanitize(subject);
     const safeMessage = sanitize(message).replace(/\n/g, "<br />");
 
+    const fromEmail = process.env.RESEND_FROM_EMAIL || DEFAULT_RESEND_FROM_EMAIL;
+    const contactToEmail = process.env.CONTACT_TO_EMAIL || DEFAULT_CONTACT_EMAIL;
+
     const result = await resend.emails.send({
-      from: "portfolio@yourdomain.com",
-      to: "mohamedrishanakeel13867@gmail.com",
+      from: fromEmail,
+      to: contactToEmail,
       subject: `[Portfolio] ${subject} from ${name}`,
       replyTo: email,
       html: `
@@ -126,6 +131,23 @@ export async function POST(request: Request) {
 
     if (result.error) {
       return NextResponse.json({ error: result.error.message }, { status: 502 });
+    }
+
+    const thankYouResult = await resend.emails.send({
+      from: fromEmail,
+      to: email,
+      subject: "Thanks for reaching out",
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
+          <p>Hi ${safeName},</p>
+          <p>Thanks for contacting me through my portfolio. I received your message and will reply as soon as possible.</p>
+          <p style="margin-top: 20px;">Best,<br />Akeel Rishan</p>
+        </div>
+      `
+    });
+
+    if (thankYouResult.error) {
+      console.warn("Unable to send contact thank-you email", thankYouResult.error);
     }
 
     return NextResponse.json({ success: true });

@@ -34,13 +34,13 @@ function getResponsiveMotion(width: number, prefersReduced: boolean) {
 
   if (width > 0 && width < 640) {
     return {
-      sideX: 20,
-      hiddenX: 120,
-      sideRotate: 8,
-      hiddenRotate: 14,
-      sideOpacity: 0.25,
-      duration: 0.7,
-      cardWidth: "85vw"
+      sideX: 12,
+      hiddenX: 80,
+      sideRotate: 6,
+      hiddenRotate: 10,
+      sideOpacity: 0.2,
+      duration: 0.62,
+      cardWidth: "min(78vw, 300px)"
     };
   }
 
@@ -109,7 +109,7 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
   const variants = useMemo<Variants>(
     () => ({
       center: {
-        scale: prefersReduced ? 1 : 1.12,
+        scale: prefersReduced ? 1 : width > 0 && width < 640 ? 1.04 : 1.12,
         x: 0,
         rotateY: 0,
         opacity: 1,
@@ -120,7 +120,7 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
         }
       },
       left: {
-        scale: prefersReduced ? 0.98 : 0.88,
+        scale: prefersReduced ? 0.98 : width > 0 && width < 640 ? 0.82 : 0.88,
         x: -motionConfig.sideX,
         rotateY: motionConfig.sideRotate,
         opacity: motionConfig.sideOpacity,
@@ -131,7 +131,7 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
         }
       },
       right: {
-        scale: prefersReduced ? 0.98 : 0.88,
+        scale: prefersReduced ? 0.98 : width > 0 && width < 640 ? 0.82 : 0.88,
         x: motionConfig.sideX,
         rotateY: -motionConfig.sideRotate,
         opacity: motionConfig.sideOpacity,
@@ -153,7 +153,7 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
         }
       }
     }),
-    [motionConfig, prefersReduced]
+    [motionConfig, prefersReduced, width]
   );
 
   const onSelect = useCallback(() => {
@@ -214,7 +214,7 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
 
   return (
     <div
-      className="relative w-full"
+      className="relative mx-auto w-full max-w-full overflow-hidden"
       aria-label="Article carousel, auto-advancing"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -225,15 +225,15 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
         type="button"
         aria-label={isPaused ? "Resume article carousel" : "Pause article carousel"}
         onClick={toggleAutoplay}
-        className="absolute right-2 top-2 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-dark-card/85 text-text-primary shadow-[0_12px_35px_rgba(0,0,0,0.35)] backdrop-blur-md transition hover:border-brand-cyan hover:text-brand-cyan"
+        className="absolute right-1 top-1 z-50 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-dark-card/85 text-text-primary shadow-[0_12px_35px_rgba(0,0,0,0.35)] backdrop-blur-md transition hover:border-brand-cyan hover:text-brand-cyan sm:right-2 sm:top-2 sm:h-10 sm:w-10"
       >
         {isPaused ? <Play size={16} /> : <Pause size={16} />}
       </button>
 
-      <div className="relative overflow-hidden" style={{ perspective: "1200px" }}>
+      <div className="relative max-w-full overflow-hidden" style={{ perspective: "1200px" }}>
         <div ref={emblaRef} className="overflow-hidden">
           <div
-            className="flex items-center py-10 pb-14"
+            className="flex items-center py-7 pb-10 sm:py-10 sm:pb-14"
             style={{
               transformStyle: "preserve-3d"
             }}
@@ -246,7 +246,7 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
               return (
                 <div
                   key={`${article.title}-${index}`}
-                  className={cn("flex-none px-4", isHidden && "pointer-events-none")}
+                  className={cn("flex-none px-2 sm:px-4", isHidden && "pointer-events-none")}
                   style={{ width: motionConfig.cardWidth }}
                 >
                   <motion.div
@@ -300,15 +300,15 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute left-0 top-0 z-40 h-full w-[60px] bg-gradient-to-r from-dark-bg to-transparent sm:w-32" />
-        <div className="pointer-events-none absolute right-0 top-0 z-40 h-full w-[60px] bg-gradient-to-l from-dark-bg to-transparent sm:w-32" />
+        <div className="pointer-events-none absolute left-0 top-0 z-40 h-full w-10 bg-gradient-to-r from-dark-bg to-transparent sm:w-32" />
+        <div className="pointer-events-none absolute right-0 top-0 z-40 h-full w-10 bg-gradient-to-l from-dark-bg to-transparent sm:w-32" />
       </div>
 
       <p className="sr-only" aria-live="polite">
         Active article: {articles[selectedIndex]?.title}
       </p>
 
-      <div className="mt-6 flex justify-center gap-1.5 sm:gap-2">
+      <div className="mt-3 flex max-w-full flex-wrap justify-center gap-1.5 sm:mt-6 sm:gap-2">
         {articles.map((article, index) => (
           <button
             key={`${article.title}-dot`}

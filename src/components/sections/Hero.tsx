@@ -8,19 +8,12 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import type { PortfolioSiteConfig } from "@/lib/sanity/data";
 
-type GitHubStats = {
-  public_repos: number;
-  followers: number;
-  public_gists: number;
-};
-
 export function Hero({ config }: { config: PortfolioSiteConfig }) {
   const titles = useMemo(() => ["LLM Systems", "AI Agents", "RAG Pipelines"], []);
   const { trackCVDownload } = useAnalytics();
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const [githubStats, setGithubStats] = useState<GitHubStats | null>(null);
   const bp = useBreakpoint();
   const isMobileOrTablet = bp === "mobile-sm" || bp === "mobile" || bp === "tablet";
   const particleCount = isMobileOrTablet ? 7 : 24;
@@ -48,36 +41,6 @@ export function Hero({ config }: { config: PortfolioSiteConfig }) {
 
     return () => window.clearTimeout(timer);
   }, [displayText, isDeleting, titleIndex, titles]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function loadGitHubStats() {
-      try {
-        const response = await fetch(`https://api.github.com/users/${config.githubUsername}`, {
-          signal: controller.signal
-        });
-
-        if (!response.ok) {
-          return;
-        }
-
-        const data = (await response.json()) as GitHubStats;
-        setGithubStats({
-          public_repos: data.public_repos,
-          followers: data.followers,
-          public_gists: data.public_gists
-        });
-      } catch (error) {
-        if (!controller.signal.aborted) {
-          console.warn("Unable to load GitHub stats", error);
-        }
-      }
-    }
-
-    loadGitHubStats();
-    return () => controller.abort();
-  }, [config.githubUsername]);
 
   return (
     <section id="home" className="relative flex min-h-screen items-center overflow-hidden pt-20">
@@ -155,22 +118,6 @@ export function Hero({ config }: { config: PortfolioSiteConfig }) {
               );
             })}
           </div>
-          {githubStats && (
-            <div className="mt-6 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:justify-center lg:justify-start">
-              {[
-                ["Repos", githubStats.public_repos],
-                ["Followers", githubStats.followers],
-                ["Gists", githubStats.public_gists]
-              ].map(([label, value]) => (
-                <div
-                  key={label}
-                  className="rounded-full border border-dark-border bg-dark-card/70 px-4 py-2 text-center text-xs text-text-muted sm:text-sm"
-                >
-                  <span className="font-semibold text-text-primary">{value}</span> {label}
-                </div>
-              ))}
-            </div>
-          )}
         </motion.div>
 
         <motion.div

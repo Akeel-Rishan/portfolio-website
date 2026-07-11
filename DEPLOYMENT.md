@@ -18,6 +18,8 @@ GEMINI_API_KEY=your key from aistudio.google.com
 NEXT_PUBLIC_SITE_URL=https://yourdomain.com
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 RESEND_API_KEY=your key from resend.com
+RESEND_FROM_EMAIL=Akeel Rishan <onboarding@resend.dev>
+CONTACT_TO_EMAIL=mohamedrishanakeel13867@gmail.com
 ```
 
 Use these sources:
@@ -26,6 +28,8 @@ Use these sources:
 - `NEXT_PUBLIC_SITE_URL`: your final production domain, including `https://`
 - `NEXT_PUBLIC_GA_ID`: Google Analytics 4 web data stream measurement ID
 - `RESEND_API_KEY`: Resend API key from `https://resend.com`
+- `RESEND_FROM_EMAIL`: sender address for contact notifications and thank-you auto-replies. Use `onboarding@resend.dev` for testing, then switch to a verified domain sender.
+- `CONTACT_TO_EMAIL`: where portfolio contact messages should be delivered.
 
 ## Step 3 - Custom Domain
 
@@ -72,6 +76,4 @@ vercel --prod
   - `public/icons/icon-192.png`
   - `public/icons/icon-512.png`
   - `public/icons/maskable-512.png`
-- In `src/app/api/contact/route.ts`, replace:
-  - `portfolio@yourdomain.com` with your verified Resend sender
-  - `your@email.com` with your receiving email
+- For production email, verify a domain in Resend and update `RESEND_FROM_EMAIL`.
