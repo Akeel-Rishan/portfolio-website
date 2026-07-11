@@ -27,6 +27,7 @@ export const navLinks: NavLink[] = [
   { label: "Demos", href: "#demos" },
   { label: "Resume", href: "#resume-analyzer" },
   { label: "Articles", href: "#articles" },
+  { label: "AI Chat", href: "/akeel-ai" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" }
 ];

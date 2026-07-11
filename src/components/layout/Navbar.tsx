@@ -16,7 +16,7 @@ const mobileNavLinks = [
   { label: "Articles", href: "#articles" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
-  { label: "AI Chat", href: "#chat" }
+  { label: "AI Chat", href: "/akeel-ai" }
 ];
 
 export function Navbar() {

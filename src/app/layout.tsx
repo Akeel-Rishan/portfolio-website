@@ -4,6 +4,7 @@ import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { BackToTop } from "@/components/ui/BackToTop";
+import { ChatWidget } from "@/components/ui/ChatWidget";
 import { MediumFollowPopup } from "@/components/ui/MediumFollowPopup";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { SITE } from "@/lib/constants";
@@ -92,6 +93,7 @@ export default function RootLayout({
           <MediumFollowPopup mediumUrl="https://medium.com/@AkeelRishan" />
           <main>{children}</main>
           <Footer />
+          <ChatWidget />
           <BackToTop />
         </ThemeProvider>
         <Analytics />
