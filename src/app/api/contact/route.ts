@@ -137,10 +137,12 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: email,
       subject: "Thanks for reaching out",
+      replyTo: contactToEmail,
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #111827;">
           <p>Hi ${safeName},</p>
           <p>Thanks for contacting me through my portfolio. I received your message and will reply as soon as possible.</p>
+          <p style="margin-top: 16px;">For reference, your subject was: <strong>${safeSubject}</strong></p>
           <p style="margin-top: 20px;">Best,<br />Akeel Rishan</p>
         </div>
       `

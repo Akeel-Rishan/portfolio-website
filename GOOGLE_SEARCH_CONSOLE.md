@@ -28,15 +28,7 @@ Replace `yourdomain.com` with your actual domain.
 
 ## 3. Add the Code to Metadata
 
-Open [src/app/layout.tsx](src/app/layout.tsx) and replace:
-
-```ts
-verification: {
-  google: "ADD_AFTER_SEARCH_CONSOLE_SETUP"
-}
-```
-
-with:
+Open [src/app/layout.tsx](src/app/layout.tsx) and confirm the metadata contains:
 
 ```ts
 verification: {
