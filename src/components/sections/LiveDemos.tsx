@@ -109,7 +109,7 @@ export function LiveDemos() {
 
         <motion.div variants={fadeInUp}>
           <Card glow className="p-4 sm:p-6">
-            <div className="scroll-x-container -mx-4 flex snap-x gap-2 px-4 sm:mx-0 sm:flex-wrap sm:px-0">
+            <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const active = activeTab === tab.id;
@@ -124,14 +124,14 @@ export function LiveDemos() {
                       setError("");
                     }}
                     className={cn(
-                      "inline-flex min-h-11 min-w-[120px] snap-start items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm transition sm:min-w-0",
+                      "inline-flex min-h-12 min-w-0 items-center justify-center gap-1.5 rounded-2xl border px-2 py-2 text-center text-[11px] font-medium leading-tight transition sm:min-h-11 sm:gap-2 sm:rounded-full sm:px-4 sm:text-sm",
                       active
                         ? "border-brand-purple bg-brand-purple/15 text-text-primary"
                         : "border-dark-border text-text-muted hover:border-brand-cyan hover:text-brand-cyan"
                     )}
                   >
-                    <Icon size={16} />
-                    {tab.label}
+                    <Icon className="hidden h-3.5 w-3.5 shrink-0 min-[390px]:block sm:block sm:h-4 sm:w-4" />
+                    <span className="min-w-0">{tab.label}</span>
                   </button>
                 );
               })}

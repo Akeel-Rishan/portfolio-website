@@ -167,10 +167,10 @@ export const skills: SkillCategory[] = [
 export const experiences: Experience[] = [
   {
     role: "AI Engineer Intern",
-    company: "Decode Labs",
+    company: "Tessera",
     period: "2026 - Present",
     location: "Remote",
-    initials: "DL",
+    initials: "TS",
     color: "from-brand-purple to-brand-cyan",
     bullets: [
       "Contributing to AI-powered product features with a focus on practical LLM workflows.",

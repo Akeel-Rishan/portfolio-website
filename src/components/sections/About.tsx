@@ -46,7 +46,7 @@ export function About({ config }: { config: PortfolioSiteConfig }) {
         </motion.div>
 
         <motion.div variants={fadeInRight} className="order-first flex min-w-0 flex-col items-center space-y-4 lg:order-last lg:items-start lg:space-y-5">
-          <div className="relative mx-auto w-32 max-w-full sm:w-44 lg:w-full">
+          <div className="relative mx-auto w-40 max-w-full sm:w-44 lg:w-full">
             <div className="pointer-events-none absolute -inset-3 rounded-[1.75rem] bg-gradient-to-br from-brand-purple/25 via-brand-cyan/10 to-transparent blur-xl" />
             <div className="glass-strong relative overflow-hidden rounded-[1.5rem] border border-brand-purple/30 p-2 shadow-neon">
               <div className="relative aspect-square overflow-hidden rounded-[1.1rem] bg-dark-card">
@@ -57,10 +57,10 @@ export function About({ config }: { config: PortfolioSiteConfig }) {
                   sizes="(min-width: 1024px) 380px, (min-width: 640px) 176px, 128px"
                   className="object-cover object-[center_45%]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/50 via-transparent to-transparent" />
-                <div className="absolute bottom-2 left-2 right-2 rounded-xl border border-white/10 bg-black/35 px-3 py-2 text-left shadow-lg shadow-black/30 backdrop-blur-md sm:bottom-3 sm:left-3 sm:right-3 sm:rounded-2xl sm:px-4 sm:py-3">
-                  <p className="text-xs font-semibold leading-tight text-white sm:text-sm lg:text-base">Akeel Rishan</p>
-                  <p className="mt-0.5 text-[10px] font-medium text-brand-cyan sm:mt-1 sm:text-xs lg:text-sm">AI Engineer</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0F]/40 via-transparent to-transparent" />
+                <div className="absolute bottom-1.5 left-1.5 right-1.5 rounded-lg border border-white/10 bg-black/30 px-2 py-1.5 text-left shadow-lg shadow-black/25 backdrop-blur-md sm:bottom-3 sm:left-3 sm:right-3 sm:rounded-2xl sm:px-4 sm:py-3">
+                  <p className="text-[10px] font-semibold leading-none text-white sm:text-sm lg:text-base">Akeel Rishan</p>
+                  <p className="mt-0.5 text-[8px] font-medium leading-none text-brand-cyan sm:mt-1 sm:text-xs lg:text-sm">AI Engineer</p>
                 </div>
               </div>
             </div>

@@ -107,15 +107,25 @@ export function Contact({ config }: { config: PortfolioSiteConfig }) {
           <div className="mt-8 grid gap-4">
             {contactMethods.map((method) => {
               const Icon = method.icon;
+              const isEmail = method.label === "Email";
               return (
                 <a key={method.label} href={method.href} target={method.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="group">
                   <Card glow className="flex flex-row items-center gap-3 p-4 sm:gap-4 sm:p-5 lg:p-6">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-brand-purple/25 bg-brand-purple/10 text-brand-cyan transition group-hover:shadow-neon sm:h-11 sm:w-11 lg:h-12 lg:w-12">
                       <Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
                     </span>
-                    <span className="min-w-0">
+                    <span className="min-w-0 flex-1 text-left">
                       <span className="block text-xs font-medium text-text-muted sm:text-sm">{method.label}</span>
-                      <span className="block break-all text-sm font-semibold text-text-primary sm:break-normal sm:text-base">{method.value}</span>
+                      <span
+                        title={method.value}
+                        className={
+                          isEmail
+                            ? "block max-w-full truncate text-[12px] font-semibold leading-5 text-text-primary min-[390px]:text-[13px] sm:text-base"
+                            : "block max-w-full truncate text-sm font-semibold leading-5 text-text-primary sm:text-base"
+                        }
+                      >
+                        {method.value}
+                      </span>
                     </span>
                   </Card>
                 </a>
