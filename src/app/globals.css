@@ -16,15 +16,23 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
+  max-width: 100vw;
+  overflow-x: hidden;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  font-size: 16px;
   background: var(--background);
 }
 
 body {
+  max-width: 100vw;
   min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   background:
     radial-gradient(circle at 15% 18%, rgba(124, 58, 237, 0.14), transparent 30%),
     radial-gradient(circle at 82% 12%, rgba(6, 182, 212, 0.12), transparent 26%),
@@ -43,6 +51,30 @@ textarea {
 
 section {
   scroll-margin-top: 96px;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  touch-action: manipulation;
+}
+
+button,
+a,
+[role="button"] {
+  cursor: pointer;
+}
+
+button:active,
+a:active,
+.btn:active {
+  transform: scale(0.97);
+}
+
+.card:active {
+  transform: scale(0.99);
 }
 
 ::selection {
@@ -86,6 +118,17 @@ section {
   padding-block: 96px;
 }
 
+.scroll-x-container {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-x-container::-webkit-scrollbar {
+  display: none;
+}
+
 .particle {
   position: absolute;
   width: 6px;
@@ -106,4 +149,73 @@ section {
   width: 4px;
   height: 4px;
   animation-duration: 12s;
+}
+
+@media (max-width: 767px) {
+  .section-shell {
+    width: min(100% - 32px, 1120px);
+    padding-block: 64px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  .glass,
+  .glass-strong {
+    background: rgba(17, 17, 24, 0.98);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .project-card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .chat-message-bubble {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  .chat-message-bubble a {
+    display: inline-block !important;
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-break: break-all !important;
+  }
+
+  .chat-message-bubble p,
+  .chat-message-bubble span,
+  .chat-message-bubble li {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .section-shell {
+    width: min(100% - 48px, 1120px);
+    padding-block: 80px;
+  }
+}
+
+@media (max-width: 380px) {
+  html {
+    font-size: 14px;
+  }
+
+  .section-shell {
+    width: min(100% - 24px, 1120px);
+  }
+}
+
+@media (hover: none) {
+  .card:hover,
+  .btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }

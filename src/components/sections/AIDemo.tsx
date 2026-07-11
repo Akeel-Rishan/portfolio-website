@@ -100,16 +100,20 @@ export function AIDemo() {
       <motion.div variants={staggerContainer} initial="hidden" animate={inView ? "visible" : "hidden"}>
         <motion.div variants={fadeInUp} className="mx-auto mb-10 max-w-2xl text-center">
           <Badge variant="cyan">AI Chat</Badge>
-          <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-bold leading-tight">Ask me anything.</h2>
-          <p className="mt-4 leading-8 text-muted-foreground">
+          <h2 className="mt-4 text-center text-2xl font-bold leading-tight sm:text-3xl lg:text-4xl">Ask me anything.</h2>
+          <p className="mt-3 px-2 text-center text-sm leading-7 text-muted-foreground sm:px-0 sm:text-base lg:mt-4 lg:text-lg lg:leading-8">
             A streaming portfolio assistant that can answer questions about projects, skills,
             experience, certifications, and work fit.
           </p>
         </motion.div>
 
         <motion.div variants={fadeInUp}>
-          <Card glow className="mx-auto max-w-4xl p-0">
-            <div ref={scrollRef} className="h-[400px] overflow-y-auto p-5">
+          <Card glow className="mx-auto w-full max-w-full overflow-hidden rounded-xl p-0 sm:rounded-2xl lg:max-w-4xl">
+            <div
+              ref={scrollRef}
+              style={{ overflowX: "hidden", overflowY: "auto", WebkitOverflowScrolling: "touch" }}
+              className="h-[320px] max-w-full overflow-x-hidden overflow-y-auto p-4 sm:h-[360px] sm:p-5 lg:h-[400px]"
+            >
               {messages.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center text-center">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-purple to-brand-cyan font-bold text-white shadow-neon">
@@ -120,13 +124,13 @@ export function AIDemo() {
                     Try asking about production RAG systems, agent workflows, the tech stack,
                     or whether this engineer is available for your team.
                   </p>
-                  <div className="mt-6 flex flex-wrap justify-center gap-2">
+                  <div className="mt-3 flex w-full snap-x snap-mandatory gap-2 overflow-x-auto pb-2 sm:mt-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                     {suggestedQuestions.map((question) => (
                       <button
                         key={question}
                         type="button"
                         onClick={() => sendMessage(question)}
-                        className="rounded-full border border-dark-border bg-white/[0.04] px-4 py-2 text-sm text-text-muted transition hover:border-brand-purple hover:text-text-primary"
+                        className="flex min-h-9 shrink-0 snap-start items-center whitespace-nowrap rounded-full border border-dark-border bg-white/[0.04] px-2.5 py-1.5 text-[11px] text-text-muted transition hover:border-brand-purple hover:text-text-primary sm:px-3 sm:text-xs"
                       >
                         {question}
                       </button>
@@ -134,35 +138,65 @@ export function AIDemo() {
                   </div>
                 </div>
               ) : (
-                <div className="space-y-5">
+                <div className="w-full space-y-3 overflow-x-hidden sm:space-y-5">
                   {messages.map((message, index) => {
                     const isUser = message.role === "user";
                     const isLastAssistant = !isUser && index === messages.length - 1;
                     return (
-                      <div key={`${message.role}-${index}`} className={cn("flex gap-3", isUser && "justify-end")}>
+                      <div
+                        key={`${message.role}-${index}`}
+                        className={cn("flex min-w-0 max-w-full gap-3", isUser && "justify-end")}
+                      >
                         {!isUser && (
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-purple to-brand-cyan text-xs font-bold text-white">
+                          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-purple to-brand-cyan text-[10px] font-bold text-white sm:h-8 sm:w-8 sm:text-xs lg:h-9 lg:w-9">
                             AI
                           </span>
                         )}
                         <div
+                          style={{
+                            overflowWrap: "break-word",
+                            wordBreak: "break-word",
+                            wordWrap: "break-word",
+                            minWidth: 0,
+                            maxWidth: isUser ? "85%" : "85%"
+                          }}
                           className={cn(
-                            "max-w-[82%] rounded-xl border px-4 py-3",
+                            "chat-message-bubble min-w-0 max-w-[85%] overflow-hidden rounded-xl border px-3 py-2 text-xs sm:max-w-[80%] sm:px-4 sm:py-3 sm:text-sm lg:max-w-[70%]",
                             isUser
                               ? "border-brand-cyan/35 bg-brand-cyan/10 text-text-primary"
                               : "border-dark-border bg-white/[0.04]"
                           )}
                         >
                           {isUser ? (
-                            <p className="text-sm leading-7">{message.content}</p>
+                            <p
+                              style={{
+                                overflowWrap: "break-word",
+                                wordBreak: "break-word",
+                                wordWrap: "break-word",
+                                minWidth: 0
+                              }}
+                              className="w-full min-w-0 text-xs leading-6 sm:text-sm sm:leading-7"
+                            >
+                              {message.content}
+                            </p>
                           ) : message.content ? (
-                            <StreamingText text={message.content} isStreaming={isStreaming && isLastAssistant} />
+                            <div
+                              style={{
+                                overflowWrap: "break-word",
+                                wordBreak: "break-word",
+                                wordWrap: "break-word",
+                                minWidth: 0
+                              }}
+                              className="w-full min-w-0"
+                            >
+                              <StreamingText text={message.content} isStreaming={isStreaming && isLastAssistant} />
+                            </div>
                           ) : (
                             <LoadingDots />
                           )}
                         </div>
                         {isUser && (
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-cyan/20 text-xs font-bold text-brand-cyan">
+                          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-cyan/20 text-[10px] font-bold text-brand-cyan sm:h-8 sm:w-8 sm:text-xs lg:h-9 lg:w-9">
                             You
                           </span>
                         )}
@@ -187,28 +221,29 @@ export function AIDemo() {
               )}
             </div>
 
-            <div className="border-t border-dark-border p-4">
-              <div className="mb-3 flex flex-wrap gap-2">
+            <div className="border-t border-dark-border p-3 sm:p-4">
+              <div className="mb-3 flex snap-x snap-mandatory gap-2 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {suggestedQuestions.map((question) => (
                   <button
                     key={question}
                     type="button"
                     onClick={() => sendMessage(question)}
-                    className="rounded-full border border-dark-border px-3 py-1.5 text-xs text-text-muted transition hover:border-brand-cyan hover:text-brand-cyan"
+                    className="flex min-h-9 shrink-0 snap-start items-center whitespace-nowrap rounded-full border border-dark-border px-2.5 py-1.5 text-[11px] text-text-muted transition hover:border-brand-cyan hover:text-brand-cyan sm:px-3 sm:text-xs"
                   >
                     {question}
                   </button>
                 ))}
               </div>
-              <form onSubmit={handleSubmit} className="flex gap-3">
+              <form onSubmit={handleSubmit} className="flex gap-2 sm:gap-3">
                 <input
                   value={input}
                   onChange={(event) => setInput(event.target.value)}
-                  placeholder="Ask about my projects, skills, or experience..."
-                  className="min-w-0 flex-1 rounded-full border border-dark-border bg-dark-bg/70 px-5 py-3 text-sm text-text-primary outline-none transition focus:border-brand-purple"
+                  placeholder="Ask about my work..."
+                  style={{ fontSize: "16px" }}
+                  className="min-h-11 min-w-0 flex-1 rounded-full border border-dark-border bg-dark-bg/70 px-3 py-2.5 text-base text-text-primary outline-none transition focus:border-brand-purple sm:px-4 sm:py-2"
                 />
-                <Button type="submit" icon={<Send size={18} />} disabled={isStreaming || !input.trim()}>
-                  Send
+                <Button type="submit" icon={<Send size={16} />} disabled={isStreaming || !input.trim()} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg px-0 sm:h-10 sm:w-10 sm:px-0">
+                  <span className="sr-only">Send</span>
                 </Button>
               </form>
             </div>

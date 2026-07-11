@@ -100,16 +100,16 @@ export function LiveDemos() {
   return (
     <section id="demos" ref={ref} className="section-shell">
       <motion.div variants={staggerContainer} initial="hidden" animate={inView ? "visible" : "hidden"}>
-        <motion.div variants={fadeInUp} className="mb-10 max-w-2xl">
+        <motion.div variants={fadeInUp} className="mx-auto mb-10 max-w-2xl text-center lg:mx-0 lg:text-left">
           <Badge variant="purple">Live AI Demos</Badge>
-          <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-bold leading-tight">
+          <h2 className="mt-4 text-[clamp(22px,6vw,28px)] font-bold leading-tight sm:text-[clamp(26px,4vw,32px)] lg:text-[clamp(2rem,4vw,3rem)]">
             Try small AI workflows directly in the portfolio.
           </h2>
         </motion.div>
 
         <motion.div variants={fadeInUp}>
-          <Card glow>
-            <div className="flex flex-wrap gap-2">
+          <Card glow className="p-4 sm:p-6">
+            <div className="scroll-x-container -mx-4 flex snap-x gap-2 px-4 sm:mx-0 sm:flex-wrap sm:px-0">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const active = activeTab === tab.id;
@@ -124,7 +124,7 @@ export function LiveDemos() {
                       setError("");
                     }}
                     className={cn(
-                      "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition",
+                      "inline-flex min-h-11 min-w-[120px] snap-start items-center justify-center gap-2 rounded-full border px-4 py-2 text-sm transition sm:min-w-0",
                       active
                         ? "border-brand-purple bg-brand-purple/15 text-text-primary"
                         : "border-dark-border text-text-muted hover:border-brand-cyan hover:text-brand-cyan"
@@ -151,9 +151,9 @@ export function LiveDemos() {
                   maxLength={activeTab === "summarize" ? 2000 : undefined}
                   onChange={(event) => setInput(event.target.value)}
                   placeholder={placeholders[activeTab]}
-                  className="h-72 w-full resize-none rounded-xl border border-dark-border bg-dark-bg/70 p-4 text-sm leading-7 text-text-primary outline-none transition focus:border-brand-purple"
+                  className="min-h-[100px] w-full resize-none rounded-xl border border-dark-border bg-dark-bg/70 p-4 text-base leading-7 text-text-primary outline-none transition focus:border-brand-purple sm:h-72"
                 />
-                <Button onClick={generate} disabled={isStreaming || !input.trim()} className="mt-4 w-full">
+                <Button onClick={generate} disabled={isStreaming || !input.trim()} className="mt-4 min-h-12 w-full">
                   {isStreaming ? "Generating..." : "Generate"}
                 </Button>
               </div>
@@ -171,7 +171,7 @@ export function LiveDemos() {
                     {copied ? "Copied" : "Copy"}
                   </Button>
                 </div>
-                <div className="h-72 overflow-y-auto rounded-xl border border-dark-border bg-dark-bg/70 p-4">
+                <div className="min-h-[120px] overflow-y-auto rounded-xl border border-dark-border bg-dark-bg/70 p-4 text-sm sm:h-72">
                   {activeTab === "optimize-prompt" && output ? (
                     <div className="grid gap-4 md:grid-cols-2">
                       <div className="rounded-xl border border-dark-border bg-white/[0.03] p-3">

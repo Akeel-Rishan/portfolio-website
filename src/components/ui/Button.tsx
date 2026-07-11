@@ -31,7 +31,7 @@ const sizes: Record<ButtonSize, string> = {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, href, variant = "primary", size = "md", icon, children, target, rel, download, onClick, ...props }, ref) => {
     const classes = cn(
-      "inline-flex items-center justify-center gap-2 rounded-full border font-semibold transition duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-brand-purple/50 focus:ring-offset-2 focus:ring-offset-dark-bg",
+      "btn inline-flex min-h-11 items-center justify-center gap-2 rounded-full border font-semibold transition duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-brand-purple/50 focus:ring-offset-2 focus:ring-offset-dark-bg",
       variants[variant],
       sizes[size],
       className

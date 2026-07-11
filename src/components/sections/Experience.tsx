@@ -14,7 +14,7 @@ export function Experience({ experiences }: { experiences: ExperienceItem[] }) {
       <motion.div variants={staggerContainer} initial="hidden" animate={inView ? "visible" : "hidden"}>
         <motion.div variants={fadeInUp} className="mx-auto mb-12 max-w-2xl text-center">
           <Badge variant="green">Experience</Badge>
-          <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-bold leading-tight">
+          <h2 className="mt-4 text-[clamp(22px,6vw,28px)] font-bold leading-tight sm:text-[clamp(26px,4vw,32px)] lg:text-[clamp(2rem,4vw,3rem)]">
             Building practical AI products through hands-on engineering experience.
           </h2>
         </motion.div>
@@ -24,32 +24,32 @@ export function Experience({ experiences }: { experiences: ExperienceItem[] }) {
             initial={{ height: 0 }}
             animate={inView ? { height: "100%" } : { height: 0 }}
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-5 top-0 hidden w-px bg-gradient-to-b from-brand-purple via-brand-cyan to-transparent md:left-1/2 md:block"
+            className="absolute left-4 top-0 block w-px bg-gradient-to-b from-brand-purple via-brand-cyan to-transparent lg:left-1/2"
           />
 
-          <div className="space-y-8">
+          <div className="space-y-8 pl-8 lg:pl-0">
             {experiences.map((item, index) => {
               const isLeft = index % 2 === 0;
               return (
                 <motion.div
                   key={`${item.company}-${item.period}`}
                   variants={isLeft ? fadeInLeft : fadeInRight}
-                  className="relative grid gap-5 md:grid-cols-2 md:gap-10"
+                  className="relative grid gap-5 lg:grid-cols-2 lg:gap-10"
                 >
-                  <div className={isLeft ? "md:pr-8" : "md:col-start-2 md:pl-8"}>
-                    <Card glow className="relative">
-                      <div className={`mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br ${item.color} font-bold text-white`}>
+                  <div className={isLeft ? "lg:pr-8" : "lg:col-start-2 lg:pl-8"}>
+                    <Card glow className="relative p-4 sm:p-6">
+                      <div className={`mb-5 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br ${item.color} text-sm font-bold text-white sm:h-14 sm:w-14 sm:text-base`}>
                         {item.initials}
                       </div>
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                         <div>
-                          <h3 className="text-xl font-semibold text-text-primary">{item.role}</h3>
-                          <p className="mt-1 text-brand-cyan">{item.company}</p>
+                          <h3 className="text-[15px] font-semibold text-text-primary sm:text-xl">{item.role}</h3>
+                          <p className="mt-1 text-[13px] text-brand-cyan sm:text-base">{item.company}</p>
                         </div>
                         <Badge variant="cyan">{item.location}</Badge>
                       </div>
-                      <p className="mt-3 font-mono text-sm text-text-muted">{item.period}</p>
-                      <ul className="mt-5 space-y-3 text-sm leading-6 text-muted-foreground">
+                      <p className="mt-3 font-mono text-[11px] text-text-muted sm:text-sm">{item.period}</p>
+                      <ul className="mt-5 space-y-3 text-[13px] leading-[1.6] text-muted-foreground sm:text-sm sm:leading-6">
                         {item.bullets.map((bullet) => (
                           <li key={bullet} className="flex gap-3">
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-cyan" />
@@ -66,7 +66,7 @@ export function Experience({ experiences }: { experiences: ExperienceItem[] }) {
                       </div>
                     </Card>
                   </div>
-                  <div className="absolute left-1/2 top-8 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-dark-bg bg-brand-cyan shadow-[0_0_18px_rgba(6,182,212,0.8)] md:block" />
+                  <div className="absolute -left-[31px] top-8 h-3 w-3 rounded-full border-[3px] border-dark-bg bg-brand-cyan shadow-[0_0_18px_rgba(6,182,212,0.8)] lg:left-1/2 lg:h-4 lg:w-4 lg:-translate-x-1/2 lg:border-4" />
                 </motion.div>
               );
             })}

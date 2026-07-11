@@ -38,7 +38,7 @@ function getResponsiveMotion(width: number, prefersReduced: boolean) {
       hiddenX: 120,
       sideRotate: 8,
       hiddenRotate: 14,
-      sideOpacity: 0.3,
+      sideOpacity: 0.25,
       duration: 0.7,
       cardWidth: "85vw"
     };
@@ -48,11 +48,11 @@ function getResponsiveMotion(width: number, prefersReduced: boolean) {
     return {
       sideX: 40,
       hiddenX: 150,
-      sideRotate: 14,
+      sideRotate: 12,
       hiddenRotate: 22,
-      sideOpacity: 0.5,
+      sideOpacity: 0.45,
       duration: 0.7,
-      cardWidth: "min(320px, 78vw)"
+      cardWidth: "320px"
     };
   }
 
@@ -300,15 +300,15 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute left-0 top-0 z-40 h-full w-20 bg-gradient-to-r from-dark-bg to-transparent sm:w-32" />
-        <div className="pointer-events-none absolute right-0 top-0 z-40 h-full w-20 bg-gradient-to-l from-dark-bg to-transparent sm:w-32" />
+        <div className="pointer-events-none absolute left-0 top-0 z-40 h-full w-[60px] bg-gradient-to-r from-dark-bg to-transparent sm:w-32" />
+        <div className="pointer-events-none absolute right-0 top-0 z-40 h-full w-[60px] bg-gradient-to-l from-dark-bg to-transparent sm:w-32" />
       </div>
 
       <p className="sr-only" aria-live="polite">
         Active article: {articles[selectedIndex]?.title}
       </p>
 
-      <div className="mt-6 flex justify-center gap-2">
+      <div className="mt-6 flex justify-center gap-1.5 sm:gap-2">
         {articles.map((article, index) => (
           <button
             key={`${article.title}-dot`}
@@ -316,7 +316,7 @@ export function ArticleCarousel({ articles }: ArticleCarouselProps) {
             onClick={() => scrollTo(index)}
             className="h-2 rounded transition-all duration-300"
             style={{
-              width: index === selectedIndex ? "24px" : "8px",
+              width: index === selectedIndex && width > 0 && width < 640 ? "20px" : index === selectedIndex ? "24px" : "8px",
               background: index === selectedIndex ? "#7C3AED" : "rgba(124,58,237,0.3)"
             }}
             aria-label={`Go to article ${index + 1}`}

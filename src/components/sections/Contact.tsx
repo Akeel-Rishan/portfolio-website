@@ -95,12 +95,12 @@ export function Contact({ config }: { config: PortfolioSiteConfig }) {
         animate={inView ? "visible" : "hidden"}
         className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]"
       >
-        <motion.div variants={fadeInLeft}>
+        <motion.div variants={fadeInLeft} className="order-first text-center lg:order-first lg:text-left">
           <Badge variant="pink">Contact</Badge>
-          <h2 className="mt-4 text-[clamp(2rem,4vw,3rem)] font-bold leading-tight">
+          <h2 className="mt-4 text-center text-2xl font-bold leading-tight sm:text-3xl lg:text-left lg:text-4xl">
             Let&apos;s build an AI system that earns trust.
           </h2>
-          <p className="mt-5 leading-8 text-muted-foreground">
+          <p className="mt-3 text-center text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8 lg:mt-4 lg:text-left">
             Reach out for LLM product engineering, RAG architecture, agent systems,
             evaluation design, or production readiness reviews.
           </p>
@@ -109,13 +109,13 @@ export function Contact({ config }: { config: PortfolioSiteConfig }) {
               const Icon = method.icon;
               return (
                 <a key={method.label} href={method.href} target={method.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="group">
-                  <Card glow className="flex items-center gap-4 p-5">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-full border border-brand-purple/25 bg-brand-purple/10 text-brand-cyan transition group-hover:shadow-neon">
-                      <Icon size={21} />
+                  <Card glow className="flex flex-row items-center gap-3 p-4 sm:gap-4 sm:p-5 lg:p-6">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-brand-purple/25 bg-brand-purple/10 text-brand-cyan transition group-hover:shadow-neon sm:h-11 sm:w-11 lg:h-12 lg:w-12">
+                      <Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
                     </span>
-                    <span>
-                      <span className="block text-sm text-text-muted">{method.label}</span>
-                      <span className="block font-semibold text-text-primary">{method.value}</span>
+                    <span className="min-w-0">
+                      <span className="block text-xs font-medium text-text-muted sm:text-sm">{method.label}</span>
+                      <span className="block break-all text-sm font-semibold text-text-primary sm:break-normal sm:text-base">{method.value}</span>
                     </span>
                   </Card>
                 </a>
@@ -124,8 +124,8 @@ export function Contact({ config }: { config: PortfolioSiteConfig }) {
           </div>
         </motion.div>
 
-        <motion.div variants={fadeInRight}>
-          <Card glow>
+        <motion.div variants={fadeInRight} className="order-last lg:order-last">
+          <Card glow className="p-4 sm:p-6">
             <form onSubmit={handleSubmit} className="space-y-5">
               <input
                 type="text"
@@ -136,34 +136,37 @@ export function Contact({ config }: { config: PortfolioSiteConfig }) {
                 className="hidden"
               />
               <div className="grid gap-5 sm:grid-cols-2">
-                <label className="space-y-2 text-sm text-text-muted">
+                <label className="space-y-1.5 text-xs font-medium text-text-muted sm:space-y-2 sm:text-sm">
                   <span>Name</span>
                   <input
                     required
                     name="name"
                     aria-invalid={Boolean(errors.name)}
-                    className="w-full rounded-xl border border-dark-border bg-dark-bg/70 px-4 py-3 text-text-primary outline-none transition focus:border-brand-purple"
+                    style={{ fontSize: "16px" }}
+                    className="min-h-12 w-full rounded-xl border border-dark-border bg-dark-bg/70 px-3 py-3 text-base text-text-primary outline-none transition focus:border-brand-purple sm:px-4 sm:py-3.5"
                   />
-                  {errors.name && <span className="block text-xs text-red-300">{errors.name}</span>}
+                  {errors.name && <span className="block break-words text-xs text-red-300 sm:text-sm">{errors.name}</span>}
                 </label>
-                <label className="space-y-2 text-sm text-text-muted">
+                <label className="space-y-1.5 text-xs font-medium text-text-muted sm:space-y-2 sm:text-sm">
                   <span>Email</span>
                   <input
                     required
                     type="email"
                     name="email"
                     aria-invalid={Boolean(errors.email)}
-                    className="w-full rounded-xl border border-dark-border bg-dark-bg/70 px-4 py-3 text-text-primary outline-none transition focus:border-brand-purple"
+                    style={{ fontSize: "16px" }}
+                    className="min-h-12 w-full rounded-xl border border-dark-border bg-dark-bg/70 px-3 py-3 text-base text-text-primary outline-none transition focus:border-brand-purple sm:px-4 sm:py-3.5"
                   />
-                  {errors.email && <span className="block text-xs text-red-300">{errors.email}</span>}
+                  {errors.email && <span className="block break-words text-xs text-red-300 sm:text-sm">{errors.email}</span>}
                 </label>
               </div>
-              <label className="space-y-2 text-sm text-text-muted">
+              <label className="space-y-1.5 text-xs font-medium text-text-muted sm:space-y-2 sm:text-sm">
                 <span>Subject</span>
                 <select
                   required
                   name="subject"
-                  className="w-full rounded-xl border border-dark-border bg-dark-bg/70 px-4 py-3 text-text-primary outline-none transition focus:border-brand-purple"
+                  style={{ fontSize: "16px", appearance: "none" }}
+                  className="min-h-12 w-full rounded-xl border border-dark-border bg-dark-bg/70 px-3 py-3 text-base text-text-primary outline-none transition focus:border-brand-purple sm:px-4 sm:py-3.5"
                 >
                   {subjectOptions.map((option) => (
                     <option key={option} value={option}>
@@ -172,23 +175,24 @@ export function Contact({ config }: { config: PortfolioSiteConfig }) {
                   ))}
                 </select>
               </label>
-              <label className="space-y-2 text-sm text-text-muted">
+              <label className="space-y-1.5 text-xs font-medium text-text-muted sm:space-y-2 sm:text-sm">
                 <span>Message</span>
                 <textarea
                   required
                   name="message"
                   rows={6}
                   aria-invalid={Boolean(errors.message)}
-                  className="w-full resize-none rounded-xl border border-dark-border bg-dark-bg/70 px-4 py-3 text-text-primary outline-none transition focus:border-brand-purple"
+                  style={{ fontSize: "16px" }}
+                  className="min-h-[100px] w-full resize-none rounded-xl border border-dark-border bg-dark-bg/70 px-3 py-3 text-base text-text-primary outline-none transition focus:border-brand-purple sm:min-h-[120px] sm:px-4 sm:py-3.5"
                 />
-                {errors.message && <span className="block text-xs text-red-300">{errors.message}</span>}
+                {errors.message && <span className="block break-words text-xs text-red-300 sm:text-sm">{errors.message}</span>}
               </label>
               <Button
                 type="submit"
                 size="lg"
                 icon={<Send size={18} />}
                 disabled={status === "sending"}
-                className="w-full disabled:cursor-not-allowed disabled:opacity-60"
+                className="min-h-12 w-full px-6 py-3.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:px-8 sm:py-3"
               >
                 {status === "sending" ? "Sending..." : "Submit Message"}
               </Button>
@@ -196,13 +200,13 @@ export function Contact({ config }: { config: PortfolioSiteConfig }) {
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-3 rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-4 text-sm text-emerald-200"
+                  className="flex items-center gap-3 rounded-lg border border-emerald-400/30 bg-emerald-400/10 p-4 px-4 text-center text-sm text-emerald-200 sm:text-base"
                 >
                   <CheckCircle2 size={20} />
                   <span>Thank you. Your message is in my inbox and I&apos;ll reply soon.</span>
                 </motion.div>
               )}
-              {status === "error" && <p className="text-sm text-red-300">{errorMessage}</p>}
+              {status === "error" && <p className="break-words text-xs text-red-300 sm:text-sm">{errorMessage}</p>}
             </form>
           </Card>
         </motion.div>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@/components/Analytics";
 import { Footer } from "@/components/layout/Footer";
@@ -70,6 +70,12 @@ export const metadata: Metadata = {
   verification: {
     google: "add-after-search-console-setup"
   }
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1
 };
 
 export default function RootLayout({
