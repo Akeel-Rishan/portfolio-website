@@ -14,7 +14,7 @@ type GitHubStats = {
 };
 
 export function Hero({ config }: { config: PortfolioSiteConfig }) {
-  const titles = useMemo(() => [config.title, "LLM Systems Builder", "Agent Developer"], [config.title]);
+  const titles = useMemo(() => ["LLM Systems", "AI Agents", "RAG Pipelines"], []);
   const { trackCVDownload } = useAnalytics();
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");

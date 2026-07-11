@@ -8,14 +8,14 @@ export const SITE = {
     "AI Engineer building production-grade LLM systems, RAG pipelines, and autonomous AI agents. View live demos, architecture diagrams, and open source projects.",
   tagline: "Production-grade LLM systems, RAG pipelines, and autonomous AI agents.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://your-domain.com",
-  email: "hello@your-domain.com",
+  email: "mohamedrishanakeel13867@gmail.com",
   github: "https://github.com/Akeel-Rishan",
   githubUsername: "Akeel-Rishan",
   githubHandle: "@Akeel-Rishan",
   linkedin: "https://www.linkedin.com/in/akeelrishan",
   linkedinLabel: "linkedin.com/in/akeelrishan",
-  kaggle: "https://www.kaggle.com/akeelrishanai",
-  kaggleLabel: "kaggle.com/akeelrishanai",
+  kaggle: "https://www.kaggle.com/akeelrishan",
+  kaggleLabel: "kaggle.com/akeelrishan",
   twitter: "https://x.com/Scolarx_",
   cv: "/cv.pdf"
 };
