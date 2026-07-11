@@ -149,12 +149,44 @@ export async function getArticles(): Promise<Article[]> {
   return data?.length ? data.map(mapArticle) : articles;
 }
 
+function getProjectImage(title: string) {
+  const normalized = title.toLowerCase();
+
+  if (normalized.includes("voice")) {
+    return {
+      image: "/project-ai-voice-assistant.png",
+      imageAlt: "AI voice assistant dashboard with microphone and waveform preview"
+    };
+  }
+
+  if (normalized.includes("agent")) {
+    return {
+      image: "/project-multi-agent-workflow.png",
+      imageAlt: "Multi-agent workflow system with research, code, review, and report agents"
+    };
+  }
+
+  if (normalized.includes("saas")) {
+    return {
+      image: "/project-ai-saas-platform.png",
+      imageAlt: "AI SaaS platform dashboard with analytics, billing, model routing, and growth metrics"
+    };
+  }
+
+  return {
+    image: "/project-agents.svg",
+    imageAlt: `${title} project preview`
+  };
+}
+
 function mapProject(project: SanityProject): Project {
+  const projectImage = getProjectImage(project.title);
+
   return {
     name: project.title,
     description: project.description,
-    image: "/project-agents.svg",
-    imageAlt: `${project.title} project preview`,
+    image: projectImage.image,
+    imageAlt: projectImage.imageAlt,
     problem: project.problem || "Problem details can be edited in Sanity.",
     solution: project.solution || "Solution details can be edited in Sanity.",
     impact: project.impact || "Impact details can be edited in Sanity.",

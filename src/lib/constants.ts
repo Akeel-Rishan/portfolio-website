@@ -66,8 +66,8 @@ export const projects: Project[] = [
   {
     name: "Multi-Agent Workflow System",
     description: "Coordinated agents that plan, execute, validate, and report complex work.",
-    image: "/project-agents.svg",
-    imageAlt: "Multi-agent workflow orchestration preview",
+    image: "/project-multi-agent-workflow.png",
+    imageAlt: "Multi-agent workflow system with research, code, review, and report agents",
     problem: "Manual operational workflows required repeated context switching and quality checks.",
     solution: "Composed LangGraph and CrewAI agents with Redis state and FastAPI orchestration.",
     impact: "Completed multi-step tasks faster with auditable intermediate decisions.",
@@ -84,8 +84,8 @@ export const projects: Project[] = [
   {
     name: "AI SaaS Platform",
     description: "Subscription-ready AI app with auth, billing, usage limits, and model routing.",
-    image: "/project-saas.svg",
-    imageAlt: "AI SaaS platform dashboard preview",
+    image: "/project-ai-saas-platform.png",
+    imageAlt: "AI SaaS platform dashboard with analytics, billing, model routing, and growth metrics",
     problem: "AI prototypes often lacked production product foundations like billing and reliability.",
     solution: "Built a Next.js platform with Stripe, Supabase, OpenAI routes, and usage metering.",
     impact: "Created a deployable SaaS base for AI product experiments and customer pilots.",
@@ -102,8 +102,8 @@ export const projects: Project[] = [
   {
     name: "AI Voice Assistant",
     description: "Low-latency voice assistant with transcription, synthesis, and conversational state.",
-    image: "/project-voice.svg",
-    imageAlt: "AI voice assistant waveform preview",
+    image: "/project-ai-voice-assistant.png",
+    imageAlt: "AI voice assistant dashboard with microphone and waveform preview",
     problem: "Voice AI needed faster turn-taking and more natural escalation behavior.",
     solution: "Combined Whisper, Gemini, ElevenLabs, FastAPI, and WebSockets for real-time sessions.",
     impact: "Delivered natural voice responses with accurate transcripts and configurable personas.",
