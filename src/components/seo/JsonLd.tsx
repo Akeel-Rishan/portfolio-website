@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yourdomain.com"; // REPLACE WITH YOUR ACTUAL DOMAIN
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://akeelrishan.me";
 const email = "mohamedrishanakeel13867@gmail.com";
 const githubUrl = "https://github.com/Akeel-Rishan";
 const mediumUrl = "https://medium.com/@AkeelRishan";

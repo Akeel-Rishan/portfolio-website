@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 import { firaCode, inter } from "./fonts";
 import "./globals.css";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yourdomain.com"; // REPLACE WITH YOUR ACTUAL DOMAIN
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://akeelrishan.me";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Akeel Rishan"
   },
   description:
-    "Akeel Rishan is an AI Engineer and Software Developer from Sri Lanka specializing in production-grade LLM systems, RAG pipelines, autonomous AI agents, and full-stack SaaS applications. Building with Next.js, Python, FastAPI, and Google Gemini.",
+    "Production-grade AI Engineer building LLM systems, RAG pipelines, autonomous AI agents, and scalable software.",
   keywords: [
     "Akeel Rishan",
     "Mohamed Rishan Akeel",
@@ -68,40 +68,44 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    type: "profile",
+    type: "website",
     locale: "en_US",
     url: BASE_URL,
-    siteName: "Akeel Rishan - AI Engineer",
-    title: "Akeel Rishan | AI Engineer & Software Developer",
-    description:
-      "AI Engineer from Sri Lanka building production-grade LLM systems, RAG pipelines, and autonomous AI agents. View live projects and demos.",
+    siteName: "Akeel Rishan",
+    title: "Akeel Rishan | AI Engineer",
+    description: "Production-grade AI systems, RAG pipelines, AI agents, and full-stack development.",
     images: [
       {
-        url: `${BASE_URL}/og-image.png`,
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Akeel Rishan - AI Engineer & Software Developer",
+        alt: "Akeel Rishan Portfolio",
         type: "image/png"
       }
-    ],
-    firstName: "Akeel",
-    lastName: "Rishan",
-    username: "AkeelRishan",
-    gender: "male"
+    ]
   },
   twitter: {
     card: "summary_large_image",
     site: "@Scolarx_",
     creator: "@Scolarx_",
-    title: "Akeel Rishan | AI Engineer & Software Developer",
-    description: "AI Engineer from Sri Lanka building LLM systems, RAG pipelines, and AI agents.",
-    images: [`${BASE_URL}/og-image.png`]
+    title: "Akeel Rishan | AI Engineer",
+    description: "Production-grade AI systems, RAG pipelines, AI agents, and scalable software.",
+    images: ["/og-image.png"]
   },
   alternates: {
     canonical: BASE_URL,
     languages: {
       "en-US": BASE_URL
     }
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "64x64" },
+      { url: "/favicon.png", type: "image/png", sizes: "64x64" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" }
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/favicon.ico"]
   },
   verification: {
     google: "mnbTuyoo8ohi7eputi0yt1F6aDUmknKew87vlDcp--U"
